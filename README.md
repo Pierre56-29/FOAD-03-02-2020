@@ -1,8 +1,19 @@
-# FOAD-03-02-2020
-<<<<<<< HEAD
-FOAD 03/02/2020
-=======
-FOAD 03/02/2020
+FOAD du 03/02/2020
 
-Coucou test test test hein hein test test
->>>>>>> 144a9c94af7c7f849a1be6ca711ac83c4855cbdb
+Groupe:
+
+    Alexandre, Jeremy, Pierre B.
+
+
+Lundi : Gestion de projet 
+
+- Git hub : 
+https://github.com/Pierre56-29/FOAD-03-02-2020
+
+- Technologies : 
+PHP - en MVC 
+
+- Retroplanning de livraison / Gestion de projet
+
+https://app.asana.com/0/1160029496667974/board
+
