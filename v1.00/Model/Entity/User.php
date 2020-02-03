@@ -5,7 +5,7 @@ class User extends Modele {
 private $idUser;
 private $login;
 private $password;
-private $mail;
+private $email;
 
 
 
@@ -72,9 +72,9 @@ return $this;
 /**
  * Get the value of mail
  */ 
-public function getMail()
+public function getEmail()
 {
-return $this->mail;
+return $this->email;
 }
 
 /**
@@ -82,9 +82,9 @@ return $this->mail;
  *
  * @return  self
  */ 
-public function setMail($mail)
+public function setEmail($email)
 {
-$this->mail = $mail;
+$this->email = $email;
 
 return $this;
 }
