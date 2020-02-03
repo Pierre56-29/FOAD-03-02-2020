@@ -2,9 +2,9 @@
 
    class Routeur
    {
-       private $ctrlArticle;
-       private $ctrlUser;
-       private $ctrlComment;
+        private $ctrlUser;
+        private $ctrlPicture;
+        private $ctrlComment;
 
        public function router()
        {
@@ -20,11 +20,11 @@
                    case"Inscrire" :
                    $this->ctrlUser = new ControllerUser();
                    $this->ctrlUser->inscription($_POST['login'], $_POST['email'], $_POST['password']);
-                   break;/*
-                   case"FinInscription" :
-                    $this->ctrlUser = new ControleurUser();
-                    $this->ctrlUser->verifInscriptionMail($_GET['login'],$_GET['cle']);
                    break;
+                   case"Uploader" :
+                    $this->ctrlUser = new ControllerPicture();
+                    $this->ctrlUser->uploaderPicture($_POST['filename'],$_POST['status'], $_POST['link'], $_POST['tags'], $_POST['iduser']);
+                   break;/*
                    case"Connexion" :
                     $this->ctrlUser = new ControleurUser();
                     $this->ctrlUser->pageConnexion();
