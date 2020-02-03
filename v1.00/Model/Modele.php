@@ -20,7 +20,7 @@ Abstract class Modele
     return $res;
   }
 
-  protected function hydrate(array $donnees){
+  function hydrate(array $donnees){
 
     foreach ($donnees as $key => $value ){
         $method = 'set'.ucfirst($key);
@@ -29,8 +29,6 @@ Abstract class Modele
             $this->$method($value);
         }
     }
-    var_dump($this);
-    die();
     return $this;
 }
 

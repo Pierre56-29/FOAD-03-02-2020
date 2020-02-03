@@ -4,8 +4,15 @@ class PictureManager extends Modele
 {
     public function add(Picture $picture)
     {
+        //$_SESSION['id_user'] = 1;
         $req ='INSERT INTO picture(file_name, status, link, tags, id_user) VALUES(?, ?, ?, ?, ?)';
-        $this->executeReq($req,array($picture->getFilename(), $picture->getStatus(),$picture->getLink(), $picture->getTags(),$_SESSION['id_user']));
+        if(empty($_SESSION['id_user']))
+        {
+            $this->executeReq($req,array($picture->getFilename(), $picture->getStatus(),$picture->getLink(), $picture->getTags(),1)); 
+        }
+        else {
+            $this->executeReq($req,array($picture->getFilename(), $picture->getStatus(),$picture->getLink(), $picture->getTags(),$_SESSION['id_user']));
+        }
         return "Votre image a été ajouté avec succès";
     }
 
