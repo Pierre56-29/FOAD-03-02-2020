@@ -8,19 +8,19 @@
 
        public function router()
        {
-        try {
             if(isset($_GET['action']))
             {
                switch($_GET['action'])
-               {
+               {/*
                    case"Inscription" :
                     $this->ctrlUser = new ControleurUser();
                     $this->ctrlUser->pageInscription();
-                   break;
+                   break;*/
+                   
                    case"Inscrire" :
-                   $this->ctrlUser = new ControleurUser();
-                   $this->ctrlUser->inscription($_POST['login'], $_POST['email'], $_POST['password'], $_POST['confpassword']);
-                   break;
+                   $this->ctrlUser = new ControllerUser();
+                   $this->ctrlUser->inscription($_POST['login'], $_POST['email'], $_POST['password']);
+                   break;/*
                    case"FinInscription" :
                     $this->ctrlUser = new ControleurUser();
                     $this->ctrlUser->verifInscriptionMail($_GET['login'],$_GET['cle']);
@@ -96,9 +96,9 @@
                             $this->ctrlUser->mdpTropAncien($_POST['oldPassword'], $_POST['password'], $_POST['confPassword']);
                         }
                    break;
-                
+                */
                }
-            }
+            }/*
             else
             {
                 $this->ctrlArticle = new ControleurArticle();
@@ -110,21 +110,17 @@
                 {
                     $this->ctrlArticle->accueil();
                 }
-            } 
-        }
-        catch (Exception $e)
-        {
-            $this->erreur($e->getMessage());
+            } */
         }
        }
-
+/*
        private function erreur($msgErreur)
        {
            $vue = new Vue('Erreur');
            $vue->generer(array('messageRetour' => $msgErreur));
-       }
+       }*/
    
-   }
+   
 
 
 

@@ -10,7 +10,7 @@
 
     static function autoLoad($className)
     {
-        $directories = array("controller", "model", "view");
+        $directories = array("controller", "model", "view", "model/Entity", "model/EntityManager");
 
         foreach($directories as $directory)
         {

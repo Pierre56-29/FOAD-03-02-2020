@@ -29,6 +29,9 @@ Abstract class Modele
             $this->$method($value);
         }
     }
+    var_dump($this);
+    die();
+    return $this;
 }
 
 
