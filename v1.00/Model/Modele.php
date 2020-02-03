@@ -3,7 +3,7 @@
 Abstract class Modele
 {
 
-  protected function execReq($req, $params = null)
+  protected function executeReq($req, $params = null)
   {
    
    $bdd = Database::getInstance() -> getConnection();
