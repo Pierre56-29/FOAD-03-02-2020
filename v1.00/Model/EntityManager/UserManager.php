@@ -4,6 +4,7 @@ class UserManager extends Modele
 {
     public function add(User $user)
     {
+
         $req ='INSERT INTO user(login, password, email) VALUES(?, ?, ?)';
         $this->executeReq($req,array($user->getLogin(), $user->getPassword(),$user->getEmail()));
         $_SESSION['login'] = $user->getLogin();
@@ -21,10 +22,25 @@ class UserManager extends Modele
             $user->hydrate($res2);
             return $user;
         }
-        else 
+        else
         {
-            return "Ce user n'existe pas !";
+            return false;
         }
+    }
+    
+    public function verifUser($login)
+    {
+        $req='SELECT login, password, email FROM user WHERE login=?';
+        $res = $this->executeReq($req,array($login));
+        $table = $res->fetch(PDO::FETCH_ASSOC);
+
+        if (is_array($table))
+        {
+            return true;
+        } else{
+            return false;
+        }
+
     }
 
     public function getUsers()
@@ -34,10 +50,10 @@ class UserManager extends Modele
 
         $users = [];
 
-        while($donnes = $res->fetch(PDO::FETCH_ASSOC))
+        while($donnees = $res->fetch(PDO::FETCH_ASSOC))
         {
             $user = new User();
-            $user->hydrate($donnes);
+            $user->hydrate($donnees);
             $users[] = $user;
         }
         return $users;
