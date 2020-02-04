@@ -69,9 +69,7 @@ class UserManager extends Modele
             if ($res['password']=$user->getPassword()){
                 $_SESSION['login'] = $res['login'];
                 return $_SESSION['login'];
-            }
-                     
-
+            }           
         }else{
             return "Cet utilisateur n'existe pas";
         }

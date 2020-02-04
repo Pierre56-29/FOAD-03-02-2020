@@ -43,7 +43,7 @@ class ControllerUser
                 $userManager = new UserManager();
                 $userManager->add($user);
                 
-                header('Location: ../View/Accueil.html.php'); 
+                header('Location: index.php'); 
                 exit();  
             }     
         }
@@ -59,7 +59,7 @@ class ControllerUser
         
         $_SESSION['login']=$login;
         $_SESSION['idUser']=$user->getIdUser();
-        header('Location: ../View/Accueil.html.php');
+        header('Location: index.php');
         exit();       
     }
 }
