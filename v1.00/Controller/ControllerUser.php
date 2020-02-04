@@ -43,7 +43,7 @@ class ControllerUser
                 $userManager = new UserManager();
                 $userManager->add($user);
                 
-                header('Location: index.php'); 
+                header('Location: index.php?action=Connexion'); 
                 exit();  
             }     
         }
