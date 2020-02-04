@@ -9,7 +9,7 @@ class View
         $this->fichier = "View/". $action .".php";
     }
 
-    public function generer($data)
+    public function generer($data = [])
     {
         $contenu = $this->genererFichier($this->fichier, $data);
         $maPage =  array('content' => $contenu);

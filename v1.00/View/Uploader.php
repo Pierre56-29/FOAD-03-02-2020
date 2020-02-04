@@ -4,8 +4,7 @@
     <input type="text" name = "filename" placeholder="filename"/>
     <input type="text" name = "status" value="public"/>
     <input type="text" name = "tags" placeholder="#tags"/>
-    <input type="text" name = "iduser" placeholder="#iduser"/>
-    <input type="submit" name = "submit" value = "S'inscrire">
+    <input type="submit" name = "submit" value = "Uploader mon image">
 
     <p><?php if(isset($messageRetour)) { echo $messageRetour;} ?></p>
 </form>
