@@ -23,15 +23,16 @@ class ControllerUser
 
         if ($userManager)
         {
-            $this-> afficherPageInscription();
-            echo "Cet identifiant est déja utilisé";
+            $vue = new View("Inscription");
+            $vue->generer(array("messageErreur" => "identifiant ou mot de passe Invalide"));
+            
 
         }else{
 
-            $this-> afficherPageInscription();
-
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                echo "L'adresse email '$email' n'est pas valide.";
+                $error = "L'adresse email '$email' n'est pas valide.";
+                $this-> afficherPageInscription($error);
+                
             }else{
 
                 $password = password_hash(trim($password),PASSWORD_DEFAULT);
