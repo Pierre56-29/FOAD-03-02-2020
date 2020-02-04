@@ -5,26 +5,40 @@
         private $ctrlUser;
         private $ctrlPicture;
         private $ctrlComment;
+        private $view;
 
        public function router()
        {
             if(isset($_GET['action']))
             {
                switch($_GET['action'])
-               {/*
+               {
                    case"Inscription" :
-                    $this->ctrlUser = new ControleurUser();
-                    $this->ctrlUser->pageInscription();
-                   break;*/
-                   
+                    $this->view=new View();
+                    $this->view->render("Inscription");
+                   break;
+
+                   case"Connexion" :
+                    $this->view=new View();
+                    $this->view->render("Connexion");
+                   break;
+
                    case"Inscrire" :
                    $this->ctrlUser = new ControllerUser();
                    $this->ctrlUser->inscription($_POST['login'], $_POST['email'], $_POST['password']);
                    break;
+
+                   case"Connecter" :
+                    $this->ctrlUser=new ControllerUser();
+                    $this->ctrlUser->connexion($_POST['login'],$_POST['password']);
+                   break;
+
                    case"Uploader" :
                     $this->ctrlUser = new ControllerPicture();
                     $this->ctrlUser->uploaderPicture($_POST['filename'],$_POST['status'], $_POST['link'], $_POST['tags'], $_POST['iduser']);
-                   break;/*
+                   break;
+                   
+                   /*
                    case"Connexion" :
                     $this->ctrlUser = new ControleurUser();
                     $this->ctrlUser->pageConnexion();

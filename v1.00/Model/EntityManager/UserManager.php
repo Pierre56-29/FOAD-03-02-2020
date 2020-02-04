@@ -13,7 +13,7 @@ class UserManager extends Modele
     {
         $req='SELECT login, password, email FROM user WHERE login=?';
         $res = $this->executeReq($req,$login);
-        $res->fetch(PDO::ASSOC);
+        $res->fetch(PDO::FETCH_ASSOC);
         if($res != FALSE)
         {
             $user = new User();
@@ -33,13 +33,27 @@ class UserManager extends Modele
 
         $users = [];
 
-        while($donnes = $res->fetch(PDO::ASSOC))
+        while($donnes = $res->fetch(PDO::FETCH_ASSOC))
         {
             $user = new User();
             $user->hydrate($donnes);
             $users[] = $user;
         }
-
         return $users;
+    }
+
+    public function connect($user)
+    {
+        $req='SELECT login, password, email FROM user WHERE login=?';
+        $res = $this->executeReq($req,array($user->getLogin()));
+        $res = $res->fetch(PDO::FETCH_ASSOC);
+        if($res != FALSE)
+        { 
+            
+            print_r($res);           
+
+        }else{
+            echo "Cet utilisateur n'existe pas";
+        }
     }
 }
