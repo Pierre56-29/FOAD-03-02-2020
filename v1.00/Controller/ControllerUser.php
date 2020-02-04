@@ -25,8 +25,11 @@ class ControllerUser
         {
             $this-> afficherPageInscription();
             echo "Cet identifiant est déja utilisé";
+
         }else{
+
             $this-> afficherPageInscription();
+
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 echo "L'adresse email '$email' n'est pas valide.";
             }else{
@@ -40,12 +43,10 @@ class ControllerUser
                 $userManager = new UserManager();
                 $userManager->add($user);
                 
-                header('Location: ../View/Accueil.html.php'); 
+                header('Location: index.php'); 
                 exit();  
             }     
         }
-
-        
     }
 
     public function connexion($login,$password)
@@ -68,6 +69,9 @@ class ControllerUser
             $vue->generer(array("messageErreur" => "identifiant ou mot de passe Invalide"));
         }
         
+        $_SESSION['login']=$login;
+        $_SESSION['idUser']=$user->getIdUser();
+        header('Location: index.php');
         exit();       
     }
 }
