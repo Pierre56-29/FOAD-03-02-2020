@@ -35,20 +35,20 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <a class="navbar-brand" href="#">Logo</a>
+  <a class="navbar-brand" href="index.php">Logo</a>
     <ul class="col-xs-4 navbar-nav mx-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Tableau de bord</a>
+        <a class="nav-link" href="index.php?action=PageDashboard">Tableau de bord</a>
       </li>
     </ul>
     <ul class="col-xs-4 navbar-nav mx-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Uploader</a>
+        <a class="nav-link" href="index.php?action=PageUpload">Uploader</a>
       </li>
     </ul>
     <ul class="col-xs-4 navbar-nav mx-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Se connecter</a>
+        <a class="nav-link" href="index.php?action=Connexion">Se connecter</a>
       </li>
     </ul>
     <ul class="col-xs-4 navbar-nav mx-auto">
