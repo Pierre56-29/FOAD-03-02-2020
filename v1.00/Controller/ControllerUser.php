@@ -25,8 +25,11 @@ class ControllerUser
         {
             $this-> afficherPageInscription();
             echo "Cet identifiant est déja utilisé";
+
         }else{
+
             $this-> afficherPageInscription();
+
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 echo "L'adresse email '$email' n'est pas valide.";
             }else{
@@ -44,8 +47,6 @@ class ControllerUser
                 exit();  
             }     
         }
-
-        
     }
 
     public function connexion($login,$password)
@@ -56,7 +57,9 @@ class ControllerUser
         $userManager = new UserManager();
         $userManager->connect($user);
         
-        header('Location: ../View/Accueil.php'); 
+        $_SESSION['login']=$login;
+        $_SESSION['idUser']=$user->getIdUser();
+        header('Location: ../View/Accueil.html.php');
         exit();       
     }
 }

@@ -61,7 +61,7 @@ class UserManager extends Modele
 
     public function connect($user)
     {
-        $req='SELECT login, password, email FROM user WHERE login=?';
+        $req='SELECT login, password, email, idUser FROM user WHERE login=?';
         $res = $this->executeReq($req,array($user->getLogin()));
         $res = $res->fetch(PDO::FETCH_ASSOC);
         if($res != FALSE)
