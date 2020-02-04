@@ -23,7 +23,7 @@
                    break;
                    case"Uploader" :
                     $this->ctrlUser = new ControllerPicture();
-                    $this->ctrlUser->uploaderPicture($_POST['filename'],$_POST['status'], $_POST['link'], $_POST['tags'], $_POST['iduser']);
+                    $this->ctrlUser->uploaderPicture($_POST['filename'],$_POST['status'], $_POST['tags'], $_POST['iduser'],$_FILES['uploadedPicture']);
                    break;/*
                    case"Connexion" :
                     $this->ctrlUser = new ControleurUser();

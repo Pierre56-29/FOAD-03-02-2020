@@ -26,10 +26,15 @@ Abstract class Modele
         $method = 'set'.ucfirst($key);
 
         if(method_exists($this,$method)){
-            $this->$method($value);
+          $setter =$this->$method($value);
+          if($setter !== true)
+          {
+            return $setter;
+            exit;
+          }
         }
     }
-    return $this;
+    return true;
 }
 
 
