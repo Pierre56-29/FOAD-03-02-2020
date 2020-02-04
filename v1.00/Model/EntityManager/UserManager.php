@@ -10,15 +10,15 @@ class UserManager extends Modele
         return "Votre user a été ajouté avec succès";
     }
 
-    public function getUser($login)
+    public function getUser($id)
     {
-        $req='SELECT login, password, email FROM user WHERE login=?';
-        $res = $this->executeReq($req,$login);
-        $res->fetch(PDO::FETCH_ASSOC);
-        if($res != FALSE)
+        $req='SELECT login, password, email FROM user WHERE idUser=?';
+        $res = $this->executeReq($req,array($id));
+        $res2 = $res->fetch(PDO::FETCH_ASSOC);
+        if($res2 != FALSE)
         {
             $user = new User();
-            $user->hydrate($res);
+            $user->hydrate($res2);
             return $user;
         }
         else 

@@ -11,19 +11,20 @@ class ControllerAccueil
     {
         $picturesAccueil = new PictureManager();
         $pictures =$picturesAccueil->getPublicPictures(4);
-        var_dump($pictures);
-        die();
+
+        $resultat = [];
         forEach($pictures as $picture)
         {
             $commentsImage = new CommentManager();
-            $commentsImage->getCommentsCountByArticle($picture->getIdPicture());
-            $picture['CommentsCount'] = $commentsImage;
-
+            $comment =$commentsImage->getCommentsCountByArticle($picture->getIdPicture());
+            
             $userName = new UserManager();
-            $userName->getUser();
+            $user = $userName->getUser($picture->getIdUser());
+
+            $resultat[] = array("picture" => $picture,"CommentCount" => $comment, "login" => $user->getLogin());
         }
         $vue = new View("AccueilNonInscrit");
-        $vue->generer();
+        $vue->generer(array("resultat" => $resultat));
     }
 
     public function renderDashboard()

@@ -1,19 +1,19 @@
 <main class="container">
     <div class="row">
-    <?php forEach($pictures as $picture)
+    <?php forEach($resultat as $picture)
     {
         ?>
             <div class="col-lg-3">
                 <div class="d-flex">
-                    <i class="fas fa-user">
-                    <p><?php echo $picture->getLogin() ?></p>
+                    <i class="fas fa-user"></i>
+                    <p><?php echo $picture["login"] ?></p>
                 </div>
                 <div>
-                <i class="fas fa-thumbs-up"></i>
-                <i class="fas fa-thumbs-down"></i>
-                <img class="img-fluid" src="<?php echo $picture->getLink() ?>" alt="picture"/>
+                    <i class="fas fa-thumbs-up"></i>
+                    <i class="fas fa-thumbs-down"></i>
+                    <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture"/>
                 </div>
-                <p><?php if ($picture['CommentsCount'] > 0) {echo $picture['CommentsCount'] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
+                <p><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
             </div>   
     <?php } ?>
     </div>
