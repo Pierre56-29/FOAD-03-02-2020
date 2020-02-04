@@ -50,13 +50,24 @@ class ControllerUser
 
     public function connexion($login,$password)
     {
+        $login =trim(htmlspecialchars($login));
+        //$password = password_hash(trim($password),PASSWORD_DEFAULT);
         $array = array("login" => $login, "password" => $password);
-        $user = new User();
-        $user->hydrate($array);
+
         $userManager = new UserManager();
-        $userManager->connect($user);
+        $user = $userManager->connect($login);
+
+        if ($user !== false && $user['password'] === $password)
+        {
+            $_SESSION['login'] = $login;
+            $_SESSION['idUser'] = $user['idUser'];
+            Header('Location: index.php');
+        }
+        else {
+            $vue = new View("Connexion");
+            $vue->generer(array("messageErreur" => "identifiant ou mot de passe Invalide"));
+        }
         
-        header('Location: ../View/Accueil.php'); 
         exit();       
     }
 }

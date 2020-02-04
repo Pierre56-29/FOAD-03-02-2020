@@ -27,7 +27,7 @@ class UserManager extends Modele
             return false;
         }
     }
-    
+
     public function verifUser($login)
     {
         $req='SELECT login, password, email FROM user WHERE login=?';
@@ -61,19 +61,15 @@ class UserManager extends Modele
 
     public function connect($user)
     {
-        $req='SELECT login, password, email FROM user WHERE login=?';
-        $res = $this->executeReq($req,array($user->getLogin()));
+        $req='SELECT idUser, login, password, email FROM user WHERE login=?';
+        $res = $this->executeReq($req,array($user));
         $res = $res->fetch(PDO::FETCH_ASSOC);
         if($res != FALSE)
         { 
-            if ($res['password']=$user->getPassword()){
-                $_SESSION['login'] = $res['login'];
-                return $_SESSION['login'];
-            }
-                     
+            return $res;
 
         }else{
-            return "Cet utilisateur n'existe pas";
+            return false;
         }
     }
 }
