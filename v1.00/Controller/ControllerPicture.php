@@ -40,4 +40,10 @@ class ControllerPicture
        $vue = new View("Uploader");
        $vue->generer(array("messageRetour" =>$messageRetour));
     }
+
+    public function afficherPageUpload()
+    {
+        $vue = new View("Uploader");
+        $vue->generer();
+    }
 }
