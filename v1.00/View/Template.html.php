@@ -4,63 +4,43 @@
 </head>
 
 <body>
-<!--<nav class= "navbar navbar-expand-lg navbar-dark bg-primary">
-<div class="container">
-    <div class="row">
-        <div class="col">
-        <a class="navbar-brand" href="#">LOGO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-        </button>
-        </div>
+  <nav class="navbar navbar-light navbar-expand-lg bg-primary">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <a class="navbar-brand" href="index.php">Logo</a>
+    <ul class="navbar-nav mr-auto">
+      <?php if(isset($_SESSION['login'])) 
+      {
+        ?>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?action=PageDashboard">Tableau de bord</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?action=PageUpload">Uploader</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?action=Deconnexion">Se déconnecter</a>
+          </li>
+      <?php }
+      else { ?>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?action=Connexion">Se connecter</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="index.php?action=Inscription">S'inscrire</a>
+          </li>
+      <?php } ?>    
+      </ul>
     
-        <div class="col">
-        <a class="nav-link active" href="#">Tableau de bord</a>
-        </div>
-
-        <div class="col">
-        <a class="nav-link active" href="#">Uploader </a>
-        </div>
-
-        <div class="col">
-        <a class="nav-link active" href="#">Se connecter</a>
-        </div>
-
-        <div class="col">
-        </div>
 
     </div>
-</div>-->
-<nav class="navbar navbar-light navbar-expand-lg bg-primary">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-  <a class="navbar-brand" href="index.php">Logo</a>
-    <ul class="col-xs-4 navbar-nav mx-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="index.php?action=PageDashboard">Tableau de bord</a>
-      </li>
-    </ul>
-    <ul class="col-xs-4 navbar-nav mx-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="index.php?action=PageUpload">Uploader</a>
-      </li>
-    </ul>
-    <ul class="col-xs-4 navbar-nav mx-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="index.php?action=Connexion">Se connecter</a>
-      </li>
-    </ul>
-    <ul class="col-xs-4 navbar-nav mx-auto">
+    <form class="form-inline">
+      <input type="text" class="col-xs-4 form-control" placeholder="Search">
+    </form>
     
-    </ul>
-  </div>
-  <form class="form-inline">
-    <input type="text" class="col-xs-4 form-control" placeholder="Search">
-  </form>
-  
-</nav>
+  </nav>
 <div> <?php echo $content; ?></div>
 
 

@@ -74,4 +74,10 @@ class ControllerUser
         header('Location: index.php');
         exit();       
     }
+
+    public function seDeconnecter()
+    {
+        session_destroy();
+        Header('Location: index.php');
+    }
 }

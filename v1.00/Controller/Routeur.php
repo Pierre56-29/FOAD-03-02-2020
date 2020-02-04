@@ -47,12 +47,11 @@
                     $this->ctrlAccueil = new ControllerAccueil();
                     $this->ctrlAccueil->renderDashboard();
                    break;
-
-                   /*
-                   case"ConfirmConnexion" :
-                    $this->ctrlUser = new ControleurUser();
-                   $this->ctrlUser->seConnecter($_POST['loginConnect'], $_POST['passwordConnect']);
+                   case"Deconnexion" :
+                    $this->ctrlUser = new ControllerUser();
+                   $this->ctrlUser->seDeconnecter();
                    break;
+                   /*
                    case"EcrireArticle" :
                     $this->ctrlArticle = new ControleurArticle();
                     $this->ctrlArticle->pageEcrireArticle();
