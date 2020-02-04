@@ -1,5 +1,5 @@
 <head>
-  <link rel="stylesheet" href="Css/bootstrap.min.css">
+  <link rel="stylesheet" href="/Css/bootstrap.min.css">
 </head>
 
 <body>

@@ -2,7 +2,19 @@
 
 class ControllerUser
 {
-        
+    public function afficherPageInscription()
+    {
+        $vue = new View("Inscription");
+        $vue->generer();
+    }
+    
+    public function afficherPageConnexion()
+    {
+        $vue = new View("Connexion");
+        $vue->generer();
+    }
+
+
     public function inscription($login, $email, $password)
     {
         $array = array("login" => $login, "email" => $email, "password" => $password);

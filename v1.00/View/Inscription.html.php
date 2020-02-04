@@ -5,9 +5,3 @@
     <input type="password" name = "password" placeholder="password"/>
     <input type="submit" name = "submit" value = "S'inscrire">
 </form>
-<head>
-
-</head>
-<body>
-
-<form action="../index.php?action=Inscrire" method="POST">

@@ -14,13 +14,14 @@
                switch($_GET['action'])
                {
                    case"Inscription" :
-                    $this->view=new View();
-                    $this->view->render("Inscription");
+                    $this->ctrlUser = new ControllerUser();
+                    $this->ctrlUser->afficherPageInscription();
                    break;
 
                    case"Connexion" :
-                    $this->view=new View();
-                    $this->view->render("Connexion");
+                    $this->ctrlUser = new ControllerUser();
+                    $this->ctrlUser->afficherPageConnexion();
+                    
                    break;
 
                    case"Inscrire" :
@@ -41,6 +42,7 @@
                     $this->ctrlPicture = new ControllerPicture();
                     $this->ctrlPicture->afficherPageUpload();
                    break;
+
                    /*
                    case"Deconnexion" :
                     $this->ctrlUser = new ControleurUser();

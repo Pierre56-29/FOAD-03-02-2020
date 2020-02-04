@@ -6,7 +6,7 @@ class View
 
     public function __construct($action)
     {
-        $this->fichier = "View/". $action .".php";
+        $this->fichier = "View/". $action .".html.php";
     }
 
     public function generer($data = [])
