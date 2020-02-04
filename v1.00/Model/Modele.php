@@ -27,18 +27,12 @@ Abstract class Modele
 
         if(method_exists($this,$method)){
           $setter =$this->$method($value);
-          if($setter !== true)
-          {
-            return $setter;
-            exit;
-          }
         }
     }
-    return true;
+  }
 }
 
 
-}
 
 
 

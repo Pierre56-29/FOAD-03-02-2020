@@ -47,10 +47,8 @@ class Picture extends Modele {
      */ 
     public function setFilename($filename)
     {
-        $filename=trim(htmlspecialchars($filename));
         $this->filename = $filename;
-
-        return "true";
+        return $this;
     }
 
     /**
@@ -68,15 +66,8 @@ class Picture extends Modele {
      */ 
     public function setStatus($status)
     {
-        if($status ==="private" || $status ==="public")
-        {
-            $this->status = $status;
-            return true;
-        }
-        else
-        {
-            return "L'image ne peut être que public ou privée !";
-        }
+        $this->status = $status;
+        return $this;
     }
 
     /**
@@ -96,7 +87,7 @@ class Picture extends Modele {
     {
         $this->link = $link;
 
-        return true;
+        return $this;
     }
 
     /**
@@ -114,9 +105,7 @@ class Picture extends Modele {
      */ 
     public function setTags($tags)
     {
-        $tags==trim(htmlspecialchars($tags));
         $this->tags = $tags;
-
         return true;
     }
 
@@ -155,14 +144,7 @@ class Picture extends Modele {
      */ 
     public function setIdUser($idUser)
     {
-        if (is_int($idUser))
-        {
             $this->idUser = $idUser;
-            return $true;
-        }
-        else {
-            return "Problème de compte utilisateur, veuillez recommencer";
-        }
-      
+            return $this;      
     }
 }

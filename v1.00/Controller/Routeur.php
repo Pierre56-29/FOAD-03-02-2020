@@ -35,15 +35,8 @@
 
                    case"Uploader" :
                     $this->ctrlUser = new ControllerPicture();
-<<<<<<< HEAD
                     $this->ctrlUser->uploaderPicture($_POST['filename'],$_POST['status'], $_POST['tags'], $_POST['iduser'],$_FILES['uploadedPicture']);
                    break;/*
-=======
-                    $this->ctrlUser->uploaderPicture($_POST['filename'],$_POST['status'], $_POST['link'], $_POST['tags'], $_POST['iduser']);
-                   break;
-                   
-                   /*
->>>>>>> cd94dd348d10bbeed5de616198f6f93c8415325d
                    case"Connexion" :
                     $this->ctrlUser = new ControleurUser();
                     $this->ctrlUser->pageConnexion();
