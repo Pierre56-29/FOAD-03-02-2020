@@ -44,9 +44,8 @@ return $this->login;
  */ 
 public function setLogin($login)
 {
-$this->login = $login;
-
-return $this;
+        $this->login = $login;
+        return true;
 }
 
 /**

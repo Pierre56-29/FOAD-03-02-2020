@@ -6,6 +6,7 @@ class UserManager extends Modele
     {
         $req ='INSERT INTO user(login, password, email) VALUES(?, ?, ?)';
         $this->executeReq($req,array($user->getLogin(), $user->getPassword(),$user->getEmail()));
+        $_SESSION['login'] = $user->getLogin();
         return "Votre user a été ajouté avec succès";
     }
 
@@ -49,11 +50,14 @@ class UserManager extends Modele
         $res = $res->fetch(PDO::FETCH_ASSOC);
         if($res != FALSE)
         { 
-            
-            print_r($res);           
+            if ($res['password']=$user->getPassword()){
+                $_SESSION['login'] = $res['login'];
+                return $_SESSION['login'];
+            }
+                     
 
         }else{
-            echo "Cet utilisateur n'existe pas";
+            return "Cet utilisateur n'existe pas";
         }
     }
 }

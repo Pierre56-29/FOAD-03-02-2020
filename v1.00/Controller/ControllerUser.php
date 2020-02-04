@@ -23,7 +23,7 @@ class ControllerUser
         $userManager = new UserManager();
         $userManager->connect($user);
         
-        // header('Location: ../View/Accueil.php'); 
-        // exit();       
+        header('Location: ../View/Accueil.php'); 
+        exit();       
     }
 }
