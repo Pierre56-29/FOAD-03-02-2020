@@ -6,14 +6,14 @@ class View
 
     public function __construct($action)
     {
-        $this->fichier = "View/". $action .".php";
+        $this->fichier = "View/". $action .".html.php";
     }
 
     public function generer($data = [])
     {
         $contenu = $this->genererFichier($this->fichier, $data);
         $maPage =  array('content' => $contenu);
-        $vue = $this->genererFichier('View/Template.php', $maPage);
+        $vue = $this->genererFichier('View/Template.html.php', $maPage);
         echo $vue;
     }
 

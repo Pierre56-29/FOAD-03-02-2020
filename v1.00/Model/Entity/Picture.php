@@ -106,7 +106,7 @@ class Picture extends Modele {
     public function setTags($tags)
     {
         $this->tags = $tags;
-        return true;
+        return $this;
     }
 
     /**
@@ -126,7 +126,7 @@ class Picture extends Modele {
     {
         $this->dateUpload = $dateUpload;
 
-        return $true;
+        return $this;
     }
 
     /**

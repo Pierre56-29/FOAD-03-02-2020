@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 <head>
   <link rel="stylesheet" href="Css/bootstrap.min.css">
   <title>Inscription</title>
@@ -38,3 +39,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </body>
+=======
+<form action="../index.php?action=Inscrire" method="POST">
+    <input type="text" name = "login" placeholder="login"/>
+    <input type="text" name = "email" placeholder="email"/>
+    <input type="password" name = "password" placeholder="password"/>
+    <input type="submit" name = "submit" value = "S'inscrire">
+</form>
+>>>>>>> 014d7f3f568bc052e2b6f83587d16753bc7bffe4
