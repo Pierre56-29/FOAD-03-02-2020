@@ -9,7 +9,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <a class="navbar-brand" href="index.php">Logo</a>
+    <a class="navbar-brand" href="index.php">WOW PICS</a>
     <ul class="navbar-nav mr-auto">
       <?php if(isset($_SESSION['login'])) 
       {

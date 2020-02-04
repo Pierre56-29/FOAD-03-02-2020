@@ -4,7 +4,7 @@ class ControllerAccueil
 {
     public function renderAccueilInscrit()
     {
-
+        
     }
 
     public function renderAccueilAnonymous()

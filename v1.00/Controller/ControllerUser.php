@@ -67,12 +67,8 @@ class ControllerUser
         else {
             $vue = new View("Connexion");
             $vue->generer(array("messageErreur" => "identifiant ou mot de passe Invalide"));
-        }
-        
-        $_SESSION['login']=$login;
-        $_SESSION['idUser']=$user->getIdUser();
-        header('Location: index.php');
-        exit();       
+        break;
+        }  
     }
 
     public function seDeconnecter()
