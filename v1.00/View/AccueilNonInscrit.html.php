@@ -10,8 +10,8 @@
                 </div>
                 <div>
                     <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture" position="absolute"/>
-                    <i class="fas fa-thumbs-up" position="absolute"></i>
-                    <i class="fas fa-thumbs-down"></i>
+                    <i class="fas fa-thumbs-up"><?php echo $picture['VoteLike'];?></i>
+                    <i class="fas fa-thumbs-down"><?php echo $picture['VoteDislike'];?></i>
                 </div>
                 <p class="border rounded mt-1"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
             </div>   
