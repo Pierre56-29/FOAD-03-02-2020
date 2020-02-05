@@ -7,7 +7,6 @@ class UserManager extends Modele
 
         $req ='INSERT INTO user(login, password, email) VALUES(?, ?, ?)';
         $this->executeReq($req,array($user->getLogin(), $user->getPassword(),$user->getEmail()));
-        $_SESSION['login'] = $user->getLogin();
         return "Votre user a été ajouté avec succès";
     }
 
@@ -32,6 +31,20 @@ class UserManager extends Modele
     {
         $req='SELECT login, password, email FROM user WHERE login=?';
         $res = $this->executeReq($req,array($login));
+        $table = $res->fetch(PDO::FETCH_ASSOC);
+
+        if (is_array($table))
+        {
+            return true;
+        } else{
+            return false;
+        }
+
+    }
+    public function verifUserMail($email)
+    {
+        $req='SELECT login, password, email FROM user WHERE email=?';
+        $res = $this->executeReq($req,array($email));
         $table = $res->fetch(PDO::FETCH_ASSOC);
 
         if (is_array($table))

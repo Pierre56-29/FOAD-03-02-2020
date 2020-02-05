@@ -10,17 +10,22 @@
                  <legend>Formulaire d'inscription</legend>
                  
                  <div class="form-group">
-                   <label for="login">Login :</label>
+                   <label for="login">Choisissez votre Login :</label>
                    <input type="text" class="form-control" id="login" name = "login" placeholder="login">
                  </div>
 
                  <div class="form-group">
-                   <label for="email">Email :</label>
+                   <label for="email">Choisissez votre E-mail :</label>
                    <input type="email" class="form-control" id="email" name = "email" placeholder="email@fournisseur.com">
                  </div>
-
+                 
                  <div class="form-group">
-                   <label for="password">Password :</label>
+                   <label for="passwordConfirm">Choisissez votre mot de passe :</label>
+                   <input type="password" class="form-control" id="password" name = "passwordconfirm"   placeholder="*****">
+                 </div>
+                                
+                 <div class="form-group">
+                   <label for="password">Confirmez votre mot de passe :</label>
                    <input type="password" class="form-control" id="password" name = "password"   placeholder="*****">
                  </div>
                  

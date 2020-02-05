@@ -52,7 +52,7 @@
 
                    case"Inscrire" :
                    $this->ctrlUser = new ControllerUser();
-                   $this->ctrlUser->inscription($_POST['login'], $_POST['email'], $_POST['password']);
+                   $this->ctrlUser->inscription($_POST['login'], $_POST['email'], $_POST['password'],$_POST['passwordconfirm']);
                    break;
 
                    case"Connecter" :
