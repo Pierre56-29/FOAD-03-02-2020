@@ -63,7 +63,8 @@
         }else{
             $(this).addClass("text-danger");   
             $(this).siblings().removeClass("text-success");}
-
+            
+    var data = $(resultats).serializeArray();
     $.ajax({
         url: "action.php",
         type: "POST",
