@@ -20,12 +20,12 @@
                  </div>
                  
                  <div class="form-group">
-                   <label for="passwordConfirm">Confirmez votre mot de passe :</label>
+                   <label for="passwordConfirm">Choisissez votre mot de passe :</label>
                    <input type="password" class="form-control" id="password" name = "password"   placeholder="*****">
                  </div>
                                 
                  <div class="form-group">
-                   <label for="password">Password :</label>
+                   <label for="password">Confirmez votre mot de passe :</label>
                    <input type="password" class="form-control" id="password" name = "password"   placeholder="*****">
                  </div>
                  
