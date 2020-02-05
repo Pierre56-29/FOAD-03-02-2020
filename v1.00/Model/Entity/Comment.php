@@ -5,7 +5,7 @@ class Comment extends Modele {
 private $idComment;
 private $title;
 private $content;
-private $datePublication;
+private $dateComment;
 private $idPicture;
 private $idUser;
 
@@ -78,9 +78,9 @@ return $this;
 /**
  * Get the value of datePublication
  */ 
-public function getDatePublication()
+public function getDateComment()
 {
-return $this->datePublication;
+return $this->dateComment;
 }
 
 /**
@@ -88,9 +88,9 @@ return $this->datePublication;
  *
  * @return  self
  */ 
-public function setDatePublication($datePublication)
+public function setDateComment($dateComment)
 {
-$this->datePublication = $datePublication;
+$this->dateComment = $dateComment;
 
 return $this;
 }

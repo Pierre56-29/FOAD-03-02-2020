@@ -1,19 +1,21 @@
-<main class="container mt-5">
+<main class="container mt-3">
     <div class="row">
     <?php forEach($resultat as $picture)
     {
         ?>
-            <div class="col-md-6 col-lg-3">
-                <div class="d-flex">
+            <div class="col-md-6 col-lg-3 card m-1 pt-1">
+                <div class="d-flex align-items-center text-white bg-primary rounded pl-1">
                     <i class="fas fa-user"></i>
-                    <p><?php echo $picture["login"] ?></p>
+                    <p class="mx-auto my-auto"><?php echo $picture["login"] ?></p>
+                </div>
+                <div class="border border-primary rounded mt-2 pl-1 pr-1 w-100 h-100 text-center ">
+                    <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture"/>
                 </div>
                 <div>
                     <i class="fas fa-thumbs-up"></i>
                     <i class="fas fa-thumbs-down"></i>
-                    <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture"/>
                 </div>
-                <p><?php $tags = $picture["picture"]->getTags();
+                <p class="border border-primary rounded mt-2"><?php $tags = $picture["picture"]->getTags();
                          $tags = explode(",",$tags);
                          for($i = 0 ; $i <count($tags); $i++)
                          {
@@ -22,7 +24,7 @@
                          }    
                     ?>
                 </p>
-                <p><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
+                <p class="border rounded"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
             </div>   
     <?php } ?>
     </div>
