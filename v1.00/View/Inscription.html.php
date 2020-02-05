@@ -4,30 +4,30 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container pt-5">
              <form method = "POST" action="index.php?action=Inscrire">
                <fieldset>
-                 <legend>Formulaire d'inscription</legend>
+                 <legend class="col-md-6">Formulaire d'inscription</legend>
                  
-                 <div class="form-group">
-                   <label for="login">Saisissez votre login</label>
+                 <div class="form-group col-md-6">
+                   <label for="login">Saisissez votre login :</label>
                    <input type="text" class="form-control" id="login" name = "login" placeholder="login">
                  </div>
 
-                 <div class="form-group">
-                   <label for="email">Saisissez votre email</label>
+                 <div class="form-group col-md-6">
+                   <label for="email">Saisissez votre email :</label>
                    <input type="email" class="form-control" id="email" name = "email" placeholder="email@gmail.com">
                  </div>
 
-                 <div class="form-group">
-                   <label for="password">Saisissez votre mot de passe</label>
+                 <div class="form-group col-md-6">
+                   <label for="password">Saisissez votre mot de passe :</label>
                    <input type="password" class="form-control" id="password" name = "password"   placeholder="*****">
-                   <label for="password">Confirmez votre mot de passe</label>
+                   <label for="password">Confirmez votre mot de passe :</label>
                    <input type="password" class="form-control" id="password" name = "passwordconfirm"   placeholder="*****">
                  </div>
                  
                  
-                 <button class="btn btn-primary" type="submit" name ="submit ">S'inscrire</button>
+                 <button class="btn btn-primary ml-3" type="submit" name ="submit ">S'inscrire</button>
                  
                </fieldset>
              </form>

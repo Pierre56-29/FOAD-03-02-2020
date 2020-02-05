@@ -9,7 +9,7 @@
                     <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture["login"] ?></p>
                 </div>
                 <div>
-                    <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture" position="absolute"/>
+                    <img class="img-fluid border border-primary rounded mt-2" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture" position="absolute"/>
                     <i class="fas fa-thumbs-up"><?php echo $picture['VoteLike'];?></i>
                     <i class="fas fa-thumbs-down"><?php echo $picture['VoteDislike'];?></i>
                 </div>
