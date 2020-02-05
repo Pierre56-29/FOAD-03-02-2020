@@ -1,17 +1,12 @@
 <?php
 
-class Action extends Modele
-{
-    public function like($data,$idUser,$idPicture){
+$vote = new VoteManager;
+$vote->likePicture(1,2);
 
-        $req = "INSERT INTO vote(score,idUser,idPicture) VALUES (?,?,?)";
-        $this->executeReq($req,array($data,$idUser,$idPicture));
-    }
-
-
+if ($vote){
+    echo "Success";
+}else{
+    echo "Request LIKE Error";
 }
-
-
-
 
 ?>

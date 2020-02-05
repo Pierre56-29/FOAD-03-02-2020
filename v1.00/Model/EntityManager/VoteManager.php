@@ -17,13 +17,12 @@ class VoteManager extends Modele
         $reslike = $this->executeReq($reqlike,array($idpicture));
         $nblike=$reslike->fetch(PDO::FETCH_ASSOC);  
         return $nblike["COUNT(score)"];
-    }
-
+    }  
     
-    
-    public function like(Picture $picture)
+    public function likePicture($idpicture, $iduser)
     {
-        $req = '';
+        $req = 'INSERT FROM vote(score,idUser,idPicture) VALUES (score=1,idUser=?, idPicture=?)';
+        $req = $this->executeReq($req,array($idpicture, $iduser));
     }
 
     public function unlike()
