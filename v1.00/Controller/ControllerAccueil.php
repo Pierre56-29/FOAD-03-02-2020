@@ -32,7 +32,9 @@ class ControllerAccueil
             $userName = new UserManager();
             $user = $userName->getUser($picture->getIdUser());
 
-            $resultat[] = array("picture" => $picture,"CommentCount" => $comment, "login" => $user->getLogin());
+            
+                     
+            $resultat[] = array("picture" => $picture,"CommentCount" => $comment,"login" => $user->getLogin());
         }
 
         $vue = new View("Accueil");
@@ -54,7 +56,12 @@ class ControllerAccueil
             $userName = new UserManager();
             $user = $userName->getUser($picture->getIdUser());
 
-            $resultat[] = array("picture" => $picture,"CommentCount" => $comment, "login" => $user->getLogin());
+            $votesImage = new VoteManager();
+            $voteLike = $votesImage->getVotelike($picture->getIdPicture());
+            $voteDislike = $votesImage->getVoteDislike($picture->getIdPicture());
+
+
+            $resultat[] = array("picture" => $picture,"CommentCount" => $comment, "VoteLike" => $voteLike,  "VoteDislike" => $voteDislike,"login" => $user->getLogin());
         }
         $vue = new View("AccueilNonInscrit");
         $vue->generer(array("resultat" => $resultat));

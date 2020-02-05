@@ -48,4 +48,12 @@
         </nav>
     <?php }  ?> 
 
-</main>
+<html>
+
+    <p>
+        <?= $_SESSION['login'] ;
+        $_SESSION['idUser'] ;?>
+        
+    </p>
+
+</html>
