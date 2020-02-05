@@ -13,6 +13,15 @@
                     <i class="fas fa-thumbs-down"></i>
                     <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture"/>
                 </div>
+                <p><?php $tags = $picture["picture"]->getTags();
+                         $tags = explode(",",$tags);
+                         for($i = 0 ; $i <count($tags); $i++)
+                         {
+                             echo '#'. $tags[$i] . " ";
+                             if ($i >= 2) { break;}
+                         }    
+                    ?>
+                </p>
                 <p><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
             </div>   
     <?php } ?>
