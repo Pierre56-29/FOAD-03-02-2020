@@ -31,6 +31,16 @@
                     $this->ctrlUser = new ControllerUser();
                    $this->ctrlUser->seDeconnecter();
                    break;
+                   case"PageDashboard":
+                    $this->ctrlAccueil = new ControllerAccueil();
+                    if(isset($_GET['indexPage']))
+                    {
+                        $this->ctrlAccueil->renderDashboard($_GET['indexPage']);
+                    }
+                    else {
+                     $this->ctrlAccueil->renderDashboard();
+                    }
+                    break;
              
                }
             }

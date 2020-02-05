@@ -10,7 +10,7 @@ class PictureVerification {
             {
                 $infosFichier = pathinfo($file['name']);   // on divise le nom du fichier
                 $extenstionFichier = $infosFichier['extension'];  // on récupère l'extension du fichier
-                $authorizedFormat = array('JPG', 'jpg', 'jpeg', 'bmp', 'gif', 'png'); // liste des formats acceptés
+                $authorizedFormat = array('JPG', 'jpg', 'jpeg', 'bmp', 'gif', 'png', 'PNG'); // liste des formats acceptés
                 if(in_array($extenstionFichier, $authorizedFormat))
                 {
                     $nameOnServer = date("d.m.y.s") . (rand(1,1000) * rand(3,564)) . "." . $extenstionFichier; // création nom aléatoire fichier

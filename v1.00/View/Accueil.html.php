@@ -29,12 +29,15 @@
             { ?>
                 <li class="page-item"><a class="page-link" href="index.php?indexPage=<?php echo ($indexPage-1); ?>">Précédent</a></li>
             <?php }
-            for($i = 1; $i < $nbPages ; $i ++)
+            for($i = 0; $i < 3 ; $i ++)
             {
                 ?>  
-                <li class="page-item"><a class="page-link" href="index.php?indexPage=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                <li class="page-item"><a class="page-link" href="index.php?indexPage=<?php echo ($indexPage+$i); ?>"><?php echo ($indexPage+$i); ?></a></li>
             <?php
-            if($i >= 4) { break;};
+            if($indexPage+$i >= $nbPages)
+            {
+            break;
+            }
             }
             if($indexPage < $nbPages)
             { ?>
@@ -43,6 +46,6 @@
         } ?>
         </ul>
         </nav>
-    <?php } ?> 
+    <?php }  ?> 
 
 </main>

@@ -18,7 +18,11 @@ class ControllerPicture
                    $messageRetour = "fichier trop lourd";
                 }
                 else if($pictureUploaded === false) {
-                    $messageRetour = $uploadedPicture['error'];
+                    $messageRetour = "Erreur sur la taille du fichier, veuillez choisir une autre image, PHP.ini c'est vraiment de la ****";
+                }
+                else if($pictureUploaded === "fichier nom compatible")
+                {
+                    $messageRetour= "Format d'image non pris en charge !";
                 }
                 else
                 {
