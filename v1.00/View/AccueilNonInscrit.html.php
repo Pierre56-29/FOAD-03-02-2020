@@ -9,9 +9,8 @@
                     <p><?php echo $picture["login"] ?></p>
                 </div>
                 <div>
-                    <i class="fas fa-thumbs-up"></i>
-                    <i class="fas fa-thumbs-down"></i>
-                    <p><?php if(isset($moyenne)){echo $moyenne;}?></p>
+                    <i class="fas fa-thumbs-up"><?php echo $picture['VoteLike'];?></i>
+                    <i class="fas fa-thumbs-down"><?php echo $picture['VoteDislike'];?></i>
                     <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture"/>
                 </div>
                 <p><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
@@ -37,3 +36,4 @@
 </form>
 
 </main>
+
