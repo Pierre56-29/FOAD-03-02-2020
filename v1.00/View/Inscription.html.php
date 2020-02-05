@@ -21,7 +21,7 @@
                  
                  <div class="form-group">
                    <label for="passwordConfirm">Choisissez votre mot de passe :</label>
-                   <input type="password" class="form-control" id="password" name = "password"   placeholder="*****">
+                   <input type="password" class="form-control" id="password" name = "passwordconfirm"   placeholder="*****">
                  </div>
                                 
                  <div class="form-group">
