@@ -4,8 +4,6 @@ class ControllerPicture
 {
     public function uploaderPicture($filename, $status, $tags, $uploadedPicture)
     {
-        var_dump($tags);
-        die();
         if(isset($filename, $status, $tags, $uploadedPicture))
         {
             $filename=trim(htmlspecialchars($filename));
@@ -51,5 +49,35 @@ class ControllerPicture
     {
         $vue = new View("Uploader");
         $vue->generer();
+    }
+
+    public function renderPicture($idPicture, $messageRetour = "")
+    {
+        $pictureManager = new PictureManager();
+        $picture = $pictureManager->getPublicPicture($idPicture);
+    
+        $commentsImage = new CommentManager();
+        $comments =$commentsImage->getCommentsByPicture($idPicture);
+        $commentsCount = count($comments);
+
+        if($commentsCount > 0) // si j'ai des commentaires, je récupère le login de chacun
+        {
+            $renderComments =[];
+            forEach($comments as $comment)
+            {
+                $userComment = new UserManager;
+                $userComment = $userComment->getUser($comment->getIdUser());
+                $renderComments[] = array("comment" => $comment, "userComment" => $userComment->getLogin());
+            }
+        }
+        
+        $userName = new UserManager(); // le username à qui appartient la photo
+        $user = $userName->getUser($picture->getIdUser());
+                    
+        $resultat= array("picture" => $picture,"CommentCount" => $commentsCount,"login" => $user->getLogin(), "comments" => $renderComments, "messageRetour" => $messageRetour);
+
+        $vue = new View("Picture");
+        $vue->generer($resultat);
+
     }
 }

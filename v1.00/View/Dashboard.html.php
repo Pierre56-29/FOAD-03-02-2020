@@ -14,6 +14,15 @@
                     <?php if( $picture->getstatus() =="public") { echo 'checked'; } ?>>
                     <img class="img-fluid" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
                 </div>
+                <p><?php $tags = $picture->getTags();
+                         $tags = explode(",",$tags);
+                         for($i = 0 ; $i <count($tags); $i++)
+                         {
+                             echo '#'. $tags[$i] . " ";
+                             if ($i >= 2) { break;}
+                         }    
+                    ?>
+                </p>
             </div>   
     <?php } ?>
     </div>
