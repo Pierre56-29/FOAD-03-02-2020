@@ -35,6 +35,8 @@ class ControllerUser
                 
             }else{
 
+                if ($password )
+
                 $password = password_hash(trim($password),PASSWORD_DEFAULT);
                 $array = array("login" => $login, "email" => $email, "password" => $password);
                 
