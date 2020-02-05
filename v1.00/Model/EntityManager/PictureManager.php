@@ -4,14 +4,13 @@ class PictureManager extends Modele
 {
     public function add(Picture $picture)
     {
-        //$_SESSION['id_user'] = 1;
         $req ='INSERT INTO picture(fileName, status, link, tags, idUser) VALUES(?, ?, ?, ?, ?)';
-        if(empty($_SESSION['id_user']))
+        if(empty($_SESSION['idUser']))
         {
             $this->executeReq($req,array($picture->getFilename(), $picture->getStatus(),$picture->getLink(), $picture->getTags(),1)); 
         }
         else {
-            $this->executeReq($req,array($picture->getFilename(), $picture->getStatus(),$picture->getLink(), $picture->getTags(),$_SESSION['id_user']));
+            $this->executeReq($req,array($picture->getFilename(), $picture->getStatus(),$picture->getLink(), $picture->getTags(),$_SESSION['idUser']));
         }
         return "Votre image a été ajouté avec succès";
     }
@@ -19,7 +18,7 @@ class PictureManager extends Modele
     public function getPicturesDashboard($id_user)
     {
         $req='SELECT * FROM picture WHERE idUser=?';
-        $res = $this->executeReq($req,$id_user);
+        $res = $this->executeReq($req,array($id_user));
         
         $pictures = [];
 
