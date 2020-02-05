@@ -4,8 +4,7 @@ class ControllerPicture
 {
     public function uploaderPicture($filename, $status, $tags, $uploadedPicture)
     {
-        var_dump($tags);
-        die();
+
         if(isset($filename, $status, $tags, $uploadedPicture))
         {
             $filename=trim(htmlspecialchars($filename));
