@@ -8,9 +8,10 @@
                     <i class="fas fa-user"></i>
                     <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture["login"] ?></p>
                 </div>
+                
                 <div>
                     <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture" position="absolute"/>
-                    <i class="fas fa-thumbs-up"><?php echo $picture['VoteLike'];?></i>
+                    <i class="fas fa-thumbs-up" id="like<?php echo $picture["idpicture"] ?>"><?php echo $picture['VoteLike'];?></i>
                     <i class="fas fa-thumbs-down"><?php echo $picture['VoteDislike'];?></i>
                 </div>
                 <p class="border rounded mt-1"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
@@ -36,3 +37,9 @@
 </form>
 
 </main>
+
+<script>
+$()
+
+
+</script>
