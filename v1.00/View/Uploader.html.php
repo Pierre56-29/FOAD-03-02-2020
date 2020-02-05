@@ -5,7 +5,7 @@
 
 <body>
 <div class="container pt-5">
-             <form method = "POST" action="index.php?action=Inscrire">
+             <form method = "POST" action="index.php?action=Uploader" enctype="multipart/form-data">
                <fieldset>
                  <legend class="col-md-3">Uploader</legend>
 
@@ -33,7 +33,7 @@
                </fieldset>
              </form>
          </div>
-         <p><?php if(isset($messageErreur)) { echo $messageErreur; } ?></p>
+         <p><?php if(isset($messageRetour)) { echo $messageRetour; } ?></p>
 
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

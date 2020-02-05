@@ -9,7 +9,9 @@
                     <p class="mx-auto my-auto"><?php echo $picture["login"] ?></p>
                 </div>
                 <div class="border border-primary rounded mt-2 pl-1 pr-1 w-100 h-100 text-center ">
-                    <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture"/>
+                    <a href="index.php?action=PagePicture&Picture=<?php echo $picture['picture']->getIdPicture(); ?>">
+                        <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture"/>
+                    </a>
                 </div>
                 <div>
                     <i class="fas fa-thumbs-up"></i>

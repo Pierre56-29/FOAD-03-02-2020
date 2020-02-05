@@ -51,7 +51,7 @@ class ControllerAccueil
         forEach($pictures as $picture)
         {
             $commentsImage = new CommentManager();
-            $comment =$commentsImage->getCommentsCountByArticle($picture->getIdPicture());
+            $comment =$commentsImage->getCommentsCountByPicture($picture->getIdPicture());
             
             $userName = new UserManager();
             $user = $userName->getUser($picture->getIdUser());
