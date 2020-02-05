@@ -47,13 +47,3 @@
         </ul>
         </nav>
     <?php }  ?> 
-
-<html>
-
-    <p>
-        <?= $_SESSION['login'] ;
-        $_SESSION['idUser'] ;?>
-        
-    </p>
-
-</html>
