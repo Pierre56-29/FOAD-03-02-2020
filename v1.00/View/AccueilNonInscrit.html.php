@@ -43,16 +43,31 @@
 			  crossorigin="anonymous"></script>
 <script>
 
- 
     $('.fa-thumbs-up').on('click',function(){
-        $(this).addClass("text-success");
-        $(this).siblings().removeClass("text-danger");});
-    
+        if ($(this).hasClass("text-success")){
+            $(this).removeClass("text-success");
+        }else{
+            $(this).addClass("text-success");   
+            $(this).siblings().removeClass("text-danger")}
+        
+        $.ajax({
+        url: "action.php",
+        type: "POST",
+        data:"",
+        success:function(response){}}) 
+    });   
+            
     $('.fa-thumbs-down').on('click',function(){
-        $(this).addClass("text-danger");
-        $(this).siblings().removeClass("text-success");});
+        if ($(this).hasClass("text-danger")){
+            $(this).removeClass("text-danger");
+        }else{
+            $(this).addClass("text-danger");   
+            $(this).siblings().removeClass("text-success");}
 
-
-
-
+    $.ajax({
+        url: "action.php",
+        type: "POST",
+        data:$(this),
+        success:function(response){}})});
+        
 </script>
