@@ -87,10 +87,15 @@ class PictureManager extends Modele
         $req = "SELECT * from picture WHERE status='public' AND idPicture=?";
         $res = $this->executeReq($req,array($idPicture));
         $res = $res->fetch(PDO::FETCH_ASSOC);
-
-        $picture = new Picture();
-        $picture->hydrate($res);
-        return $picture;
+        if($res !== false)
+        {
+            $picture = new Picture();
+            $picture->hydrate($res);
+            return $picture;
+        }
+        else {
+            return false;
+        }
     }
 
 }

@@ -31,7 +31,7 @@
         </div>
     </div>
     
-        <?php if(count($CommentCount > 1)) 
+        <?php if($CommentCount > 1)
             {?>
                <h3>Les commentaires : </h3> 
                <div class="row bg-primary">
