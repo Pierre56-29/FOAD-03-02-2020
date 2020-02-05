@@ -68,7 +68,6 @@ class ControllerUser
         else {
             $vue = new View("Connexion");
             $vue->generer(array("messageErreur" => "identifiant ou mot de passe Invalide"));
-        break;
         }  
     }
 

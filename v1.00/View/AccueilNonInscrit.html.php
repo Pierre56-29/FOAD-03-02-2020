@@ -1,9 +1,9 @@
-<main class="container">
+<main class="container mt-5">
     <div class="row">
     <?php forEach($resultat as $picture)
     {
         ?>
-            <div class="col-lg-3">
+            <div class="col-md-6 col-lg-3">
                 <div class="d-flex">
                     <i class="fas fa-user"></i>
                     <p><?php echo $picture["login"] ?></p>
@@ -18,7 +18,7 @@
     <?php } ?>
     </div>
 
-    <div class="row">
+    <div class="row mt-5">
         <div class="col-lg-6 text-center">
             Sans être connecté, testez un upload de fichier pour obtenir un lien privé de votre image
         </div>
