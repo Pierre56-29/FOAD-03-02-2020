@@ -4,16 +4,16 @@
     {
         ?>
             <div class="col-md-6 col-lg-3">
-                <div class="d-flex">
+                <div class="d-flex align-items-center text-white bg-primary rounded pl-1">
                     <i class="fas fa-user"></i>
-                    <p><?php echo $picture["login"] ?></p>
+                    <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture["login"] ?></p>
                 </div>
                 <div>
-                    <i class="fas fa-thumbs-up"><?php echo $picture['VoteLike'];?></i>
-                    <i class="fas fa-thumbs-down"><?php echo $picture['VoteDislike'];?></i>
-                    <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture"/>
+                    <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture" position="absolute"/>
+                    <i class="fas fa-thumbs-up" position="absolute"></i>
+                    <i class="fas fa-thumbs-down"></i>
                 </div>
-                <p><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
+                <p class="border rounded mt-1"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
             </div>   
     <?php } ?>
     </div>
@@ -36,4 +36,3 @@
 </form>
 
 </main>
-
