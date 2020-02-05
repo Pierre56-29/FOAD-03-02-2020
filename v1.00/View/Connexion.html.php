@@ -10,12 +10,12 @@
                  <legend>Connexion</legend>
                  
                  <div class="form-group">
-                   <label for="login">Login :</label>
+                   <label for="login">Saisir votre login :</label>
                    <input type="text" class="form-control" id="login" name = "login" placeholder="login">
                  </div>
 
                  <div class="form-group">
-                   <label for="password">Password :</label>
+                   <label for="password">Saisir votre mot de passe :</label>
                    <input type="password" class="form-control" id="password" name = "password"   placeholder="*****">
                  </div>
                  
