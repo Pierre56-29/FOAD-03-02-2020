@@ -1,18 +1,18 @@
 
 
-<main class="container mt-4">
+<main class="container mt-5">
     <div class="row">
     <?php forEach($resultat as $picture)
     {
         ?>
             <div class="col-md-6 col-lg-3">
                 <div>
-                    <h4 class="text-center"><?php echo $picture->getFilename() ?></h4>
+                    <h4 class="text-center text-white bg-primary rounded text-white bg-primary rounded pl-1  pt-1 pb-1"><?php echo $picture->getFilename() ?></h4>
                 </div>
                 <div>
-                    <input type="checkbox" data-toggle="toggle" data-on="Publique" data-off="Privé" class="custom-control-input" 
+                    <img class="img-fluid border border-primary rounded mt-2 mb-2" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
+                    <input type="checkbox" data-toggle="toggle" data-on="Publique" data-onstyle="primary" data-off="Privé" data-offstyle="default border" class="custom-control-input" 
                     <?php if( $picture->getstatus() =="public") { echo 'checked'; } ?>>
-                    <img class="img-fluid" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
                 </div>
                 <p><?php $tags = $picture->getTags();
                          $tags = explode(",",$tags);

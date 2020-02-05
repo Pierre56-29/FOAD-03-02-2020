@@ -4,23 +4,23 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container pt-5">
              <form method = "POST" action="index.php?action=Connecter">
                <fieldset>
-                 <legend>Connexion</legend>
+                 <legend class="col-md-6">Connexion</legend>
                  
-                 <div class="form-group">
+                 <div class="form-group col-md-6">
                    <label for="login">Saisir votre login :</label>
                    <input type="text" class="form-control" id="login" name = "login" placeholder="login">
                  </div>
 
-                 <div class="form-group">
+                 <div class="form-group col-md-6">
                    <label for="password">Saisir votre mot de passe :</label>
                    <input type="password" class="form-control" id="password" name = "password"   placeholder="*****">
                  </div>
                  
                  
-                 <button class="btn btn-primary" type="submit" name ="submit ">Se connecter</button>
+                 <button class="btn btn-primary ml-3" type="submit" name ="submit ">Se connecter</button>
                  
                </fieldset>
              </form>
