@@ -73,4 +73,13 @@ class PictureManager extends Modele
 
         return " Modifié avec succès";
     }
+
+    public function getCountPublicPictures()
+    {
+        $req = "SELECT COUNT(idPicture) as pictureCount FROM picture WHERE status='public'";
+        $res = $this->executeReq($req);
+        $res = $res->fetch(PDO::FETCH_ASSOC);
+
+        return $res;
+    }
 }

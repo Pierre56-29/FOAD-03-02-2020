@@ -17,7 +17,7 @@
             
                    case"Uploader" :
                     $this->ctrlPicture = new ControllerPicture();
-                    $this->ctrlPicture->uploaderPicture($_POST['filename'],$_POST['status'], $_POST['tags'], $_POST['iduser'],$_FILES['uploadedPicture']);
+                    $this->ctrlPicture->uploaderPicture($_POST['filename'],$_POST['status'], $_POST['tags'],$_FILES['uploadedPicture']);
                    break;
                    case"PageUpload" :
                     $this->ctrlPicture = new ControllerPicture();
@@ -66,7 +66,13 @@
                if(!empty($_SESSION['login']))
                {
                    $this->ctrlAccueil = new ControllerAccueil();
-                   $this->ctrlAccueil->renderAccueilInscrit();
+                   if(isset($_GET['indexPage']))
+                   {
+                        $this->ctrlAccueil->renderAccueilInscrit($_GET['indexPage']);
+                   }
+                   else {
+                    $this->ctrlAccueil->renderAccueilInscrit();
+                   }
                }
                else 
                {

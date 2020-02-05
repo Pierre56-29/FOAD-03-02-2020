@@ -2,9 +2,9 @@
 
 class ControllerPicture
 {
-    public function uploaderPicture($filename, $status, $tags, $iduser, $uploadedPicture)
+    public function uploaderPicture($filename, $status, $tags, $uploadedPicture)
     {
-        if(isset($filename, $status, $tags, $iduser, $uploadedPicture))
+        if(isset($filename, $status, $tags, $uploadedPicture))
         {
             $filename=trim(htmlspecialchars($filename));
             $tags==trim(htmlspecialchars($tags));
@@ -18,11 +18,11 @@ class ControllerPicture
                    $messageRetour = "fichier trop lourd";
                 }
                 else if($pictureUploaded === false) {
-                    $messageRetour = "erreur survenue durant l'upload du fichier, veuillez recommencer.";
+                    $messageRetour = $uploadedPicture['error'];
                 }
                 else
                 {
-                    $array = array("filename" => $filename, "status" => $status, "link" => $pictureUploaded, "tags" =>$tags, "idUser" => $iduser );
+                    $array = array("filename" => $filename, "status" => $status, "link" => $pictureUploaded, "tags" =>$tags, "idUser" => $_SESSION['idUser'] );
                     $picture = new Picture();
                     $picture->hydrate($array);
                     $pictureManager = new PictureManager();

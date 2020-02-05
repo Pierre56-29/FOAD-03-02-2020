@@ -6,11 +6,11 @@ class PictureVerification {
     {
         if ($file['error'] == 0)
         {
-            if($file['size'] <= 5000000) // si fichier inférieur à 5 méga
+            if($file['size'] <= 50000000) // si fichier inférieur à 5 méga
             {
                 $infosFichier = pathinfo($file['name']);   // on divise le nom du fichier
                 $extenstionFichier = $infosFichier['extension'];  // on récupère l'extension du fichier
-                $authorizedFormat = array('jpg', 'jpeg', 'bmp', 'gif', 'png'); // liste des formats acceptés
+                $authorizedFormat = array('JPG', 'jpg', 'jpeg', 'bmp', 'gif', 'png'); // liste des formats acceptés
                 if(in_array($extenstionFichier, $authorizedFormat))
                 {
                     $nameOnServer = date("d.m.y.s") . (rand(1,1000) * rand(3,564)) . "." . $extenstionFichier; // création nom aléatoire fichier
