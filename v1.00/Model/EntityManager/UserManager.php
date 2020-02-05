@@ -4,7 +4,6 @@ class UserManager extends Modele
 {
     public function add(User $user)
     {
-
         $req ='INSERT INTO user(login, password, email) VALUES(?, ?, ?)';
         $this->executeReq($req,array($user->getLogin(), $user->getPassword(),$user->getEmail()));
         return "Votre user a été ajouté avec succès";
