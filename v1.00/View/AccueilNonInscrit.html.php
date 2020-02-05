@@ -45,12 +45,12 @@
 
  
     $('.fa-thumbs-up').on('click',function(){
-        $(this).css("color", "blue");
-        $(this).siblings().css("color", "");});
+        $(this).addClass("text-success");
+        $(this).siblings().removeClass("text-danger");});
     
     $('.fa-thumbs-down').on('click',function(){
-        $(this).css("color", "red");
-        $(this).siblings().css("color", "");});
+        $(this).addClass("text-danger");
+        $(this).siblings().removeClass("text-success");});
 
 
 
