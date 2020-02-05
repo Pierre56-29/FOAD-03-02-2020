@@ -15,32 +15,41 @@
                switch($_GET['action'])
                {
             
-                   case"Uploader" :
-                    $this->ctrlPicture = new ControllerPicture();
-                    $this->ctrlPicture->uploaderPicture($_POST['filename'],$_POST['status'], $_POST['tags'],$_FILES['uploadedPicture']);
-                   break;
-                   case"PageUpload" :
-                    $this->ctrlPicture = new ControllerPicture();
-                    $this->ctrlPicture->renderPageUpload();
-                   break;
-                   case"PageDashboard" :
-                    $this->ctrlAccueil = new ControllerAccueil();
-                    $this->ctrlAccueil->renderDashboard();
-                   break;
-                   case"Deconnexion" :
-                    $this->ctrlUser = new ControllerUser();
-                   $this->ctrlUser->seDeconnecter();
-                   break;
-                   case"PageDashboard":
-                    $this->ctrlAccueil = new ControllerAccueil();
-                    if(isset($_GET['indexPage']))
-                    {
-                        $this->ctrlAccueil->renderDashboard($_GET['indexPage']);
-                    }
-                    else {
-                     $this->ctrlAccueil->renderDashboard();
-                    }
+                    case"Uploader" :
+                        $this->ctrlPicture = new ControllerPicture();
+                        $this->ctrlPicture->uploaderPicture($_POST['filename'],$_POST['status'], $_POST['tags'],$_FILES['uploadedPicture']);
                     break;
+                    case"PageUpload" :
+                        $this->ctrlPicture = new ControllerPicture();
+                        $this->ctrlPicture->renderPageUpload();
+                    break;
+                    case"PageDashboard" :
+                        $this->ctrlAccueil = new ControllerAccueil();
+                        $this->ctrlAccueil->renderDashboard();
+                    break;
+                    case"Deconnexion" :
+                        $this->ctrlUser = new ControllerUser();
+                        $this->ctrlUser->seDeconnecter();
+                    break;
+                    case"PageDashboard":
+                        $this->ctrlAccueil = new ControllerAccueil();
+                        if(isset($_GET['indexPage']))
+                        {
+                            $this->ctrlAccueil->renderDashboard($_GET['indexPage']);
+                        }
+                        else {
+                            $this->ctrlAccueil->renderDashboard();
+                        }
+                    break;
+                    case"PagePicture":
+                        $this->ctrlPicture = new ControllerPicture();
+                        $this->ctrlPicture->renderPicture($_GET['Picture']);
+                    break;
+                    case"Commenter":
+                        $this->ctrlComment = new ControllerComment();
+                        $this->ctrlComment->commenter($_POST['title'], $_POST['content'], $_POST['idPicture']);
+                    break;
+
              
                }
             }

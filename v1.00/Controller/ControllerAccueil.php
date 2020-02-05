@@ -27,7 +27,7 @@ class ControllerAccueil
         forEach($pictures as $picture)
         {
             $commentsImage = new CommentManager();
-            $comment =$commentsImage->getCommentsCountByArticle($picture->getIdPicture());
+            $comment =$commentsImage->getCommentsCountByPicture($picture->getIdPicture());
             
             $userName = new UserManager();
             $user = $userName->getUser($picture->getIdUser());
@@ -60,8 +60,12 @@ class ControllerAccueil
             $voteLike = $votesImage->getVotelike($picture->getIdPicture());
             $voteDislike = $votesImage->getVoteDislike($picture->getIdPicture());
 
+            $pictureid = new Picture();
+            $pictureid = $picture->getIdPicture();
 
-            $resultat[] = array("picture" => $picture,"CommentCount" => $comment, "VoteLike" => $voteLike,  "VoteDislike" => $voteDislike,"login" => $user->getLogin());
+
+
+            $resultat[] = array("picture" => $picture,"CommentCount" => $comment, "VoteLike" => $voteLike,  "VoteDislike" => $voteDislike,"login" => $user->getLogin(),"idpicture" => $pictureid);
         }
         $vue = new View("AccueilNonInscrit");
         $vue->generer(array("resultat" => $resultat));

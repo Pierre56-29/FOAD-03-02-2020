@@ -10,8 +10,6 @@ class Picture extends Modele {
     private $dateUpload;
     private $idUser;
 
-
-
     /**
      * Get the value of idPicture
      */ 

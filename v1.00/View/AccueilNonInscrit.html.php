@@ -8,6 +8,7 @@
                     <i class="fas fa-user"></i>
                     <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture["login"] ?></p>
                 </div>
+                
                 <div>
                     <img class="img-fluid border border-primary rounded mt-2" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture" position="absolute"/>
                     <i class="fas fa-thumbs-up"><?php echo $picture['VoteLike'];?></i>
@@ -36,3 +37,22 @@
 </form>
 
 </main>
+<script
+			  src="https://code.jquery.com/jquery-3.4.1.js"
+			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+			  crossorigin="anonymous"></script>
+<script>
+
+ 
+    $('.fa-thumbs-up').on('click',function(){
+        $(this).css("color", "blue");
+        $(this).siblings().css("color", "");});
+    
+    $('.fa-thumbs-down').on('click',function(){
+        $(this).css("color", "red");
+        $(this).siblings().css("color", "");});
+
+
+
+
+</script>

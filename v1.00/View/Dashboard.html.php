@@ -14,6 +14,15 @@
                     <input type="checkbox" data-toggle="toggle" data-on="Publique" data-onstyle="primary" data-off="Privé" data-offstyle="default border" class="custom-control-input" 
                     <?php if( $picture->getstatus() =="public") { echo 'checked'; } ?>>
                 </div>
+                <p><?php $tags = $picture->getTags();
+                         $tags = explode(",",$tags);
+                         for($i = 0 ; $i <count($tags); $i++)
+                         {
+                             echo '#'. $tags[$i] . " ";
+                             if ($i >= 2) { break;}
+                         }    
+                    ?>
+                </p>
             </div>   
     <?php } ?>
     </div>
