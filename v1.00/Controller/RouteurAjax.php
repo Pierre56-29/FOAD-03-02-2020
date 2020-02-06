@@ -13,23 +13,23 @@ class RouteurAjax{
                 
                 case "Like":
                     $this->ctrlVote = new ControllerVote;
-                    $this->ctrlVote->likePicture($_POST['idPicture'],$_SESSION['idUser']);
+                    $this->ctrlVote->likePicture($_POST['idPicture']);
                     
                 break;
 
                 case "Unlike":
                     $this->ctrlVote = new ControllerVote;
-                    $this->ctrlVote->unlikePicture($_POST['idPicture'],$_SESSION['idUser']);
+                    $this->ctrlVote->unlikePicture($_POST['idPicture']);
                 break;
 
                 case "Dislike":
                     $this->ctrlVote = new ControllerVote;
-                    $this->ctrlVote->dislikePicture($_POST['idPicture'],$_SESSION['idUser']);
+                    $this->ctrlVote->dislikePicture($_POST['idPicture']);
                 break;
 
                 case "Undislike":
                     $this->ctrlVote = new ControllerVote;
-                    $this->ctrlVote->undislikePicture($_POST['idPicture'],$_SESSION['idUser']);
+                    $this->ctrlVote->undislikePicture($_POST['idPicture']);
                 break;
                 case"SwitchStatusPicture":
                     $this->ctrlPicture = new ControllerPicture();

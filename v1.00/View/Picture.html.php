@@ -1,6 +1,5 @@
 <?php// var_dump($comments); die(); ?>
 <main class="container mt-5">
-<div class="col-md-3 col-lg-8">
     <div class="row">
         <div class="col-12 card m-1 pt-1">
             <div class="d-flex align-items-center text-white bg-primary rounded pl-1 ">
@@ -56,5 +55,4 @@
                 else 
                     {echo "<p> Pas encore de commentaires ! </p>";} ?> 
     </div>
-</div>
 </main>
