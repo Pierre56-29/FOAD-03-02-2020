@@ -139,6 +139,15 @@ class ControllerPicture
 
     }
 
+    public function renderPrivatePicture($idPicture)
+    {
+        $pictureManager = new PictureManager();
+        $picture = $pictureManager->getPrivatePicture($idPicture);
+
+        $vue = new View("PrivatePicture");
+        $vue->generer(array("picture" => $picture ));
+
+    }
     public function deletePicture($idPicture)
     {
         $idPicture = intval($idPicture);

@@ -134,4 +134,20 @@ class PictureManager extends Modele
 
     }
 
+    public function getPrivatePicture($idPicture)
+    {
+        $req = "SELECT * from picture WHERE status='private' AND idPicture=?";
+        $res = $this->executeReq($req,array($idPicture));
+        $res = $res->fetch(PDO::FETCH_ASSOC);
+        if($res !== false)
+        {
+            $picture = new Picture();
+            $picture->hydrate($res);
+            return $picture;
+        }
+        else {
+            return false;
+        }
+    }
+
 }
