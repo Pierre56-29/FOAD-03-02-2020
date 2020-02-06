@@ -18,12 +18,17 @@
                     <i class="fas fa-thumbs-down"></i>
                 </div>
                 <p class="border border-primary rounded mt-2"><?php $tags = $picture["picture"]->getTags();
-                         $tags = explode(",",$tags);
-                         for($i = 0 ; $i <count($tags); $i++)
+                         if(strlen($tags) > 25)
                          {
-                             echo '#'. $tags[$i] . " ";
-                             if ($i >= 2) { break;}
-                         }    
+                            $tags = substr($tags,0,24);
+                            $tags .= "...";
+                         }
+                            $tags = explode(",",$tags);
+                            for($i = 0 ; $i <count($tags); $i++)
+                            {
+                                    echo '#'. $tags[$i] . " ";
+                                if ($i >= 2) { break;}
+                            }  
                     ?>
                 </p>
                 <p class="border rounded"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
