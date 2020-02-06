@@ -1,4 +1,4 @@
-<main class="container mt-3">
+<main class="container mt-4">
     <div class="row">
     <?php forEach($resultat as $picture)
     {

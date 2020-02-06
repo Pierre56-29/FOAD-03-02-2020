@@ -1,11 +1,12 @@
 <?php// var_dump($comments); die(); ?>
 <main class="container mt-5">
+<div class="col-md-3 col-lg-8">
     <div class="row">
         <div class="col-12 card m-1 pt-1">
             <div class="d-flex align-items-center text-white bg-primary rounded pl-1 ">
                 <i class="fas fa-user"></i>
-                <p><?php echo $login ?></p>
                 <p class="mx-auto my-auto"><?php echo $picture->getFilename(); ?></p>
+                <p class="my-auto pl-1"><?php echo $login ?></p>
             </div>
             <div>
                 <div class="border border-primary rounded mt-2 pl-1 pr-1 w-100 h-100 text-center">
@@ -18,7 +19,7 @@
             </div>
             <div class="row">
                 <div>
-                    <p class="border border-primary rounded mt-2 my-auto"><?php $tags = $picture->getTags();
+                    <p class="border border-primary rounded mt-2 ml-3 my-auto col-12"><?php $tags = $picture->getTags();
                                 $tags = explode(",",$tags);
                                 for($i = 0 ; $i <count($tags); $i++)
                                 {
@@ -28,7 +29,7 @@
                         ?>
                     </p>
                 </div>
-                <div class="col-2">
+                <div class="font-italic text-right small">
                     <?php echo $picture->getDateUpload(); ?>
                 </div>
             </div>
@@ -45,15 +46,15 @@
             <?php
                 forEach($comments as $comment)
                 { ?>
-                    <div class ="col-12">
-                        <h5 class="font-weight-bold text-primary pre-scrollable"> <?php echo $comment['comment']->getTitle(); ?> </h5>
-                        <p> <?php echo $comment['comment']->getContent(); ?></p>
-                        <p> Posté par <?php echo $comment['userComment']; ?> le <?php echo $comment['comment']->getDateComment(); ?></p>
+                    <div class ="col-12 overflow-auto">
+                        <h5 class="font-weight-bold text text-primary"> <?php echo $comment['comment']->getTitle(); ?> </h5>
+                        <p > <?php echo $comment['comment']->getContent(); ?></p>
+                        <p class="font-italic text-right small"> Posté par <?php echo $comment['userComment']; ?> le <?php echo $comment['comment']->getDateComment(); ?></p>
                     </div>
             <?php }
             } 
                 else 
                     {echo "<p> Pas encore de commentaires ! </p>";} ?> 
     </div>
-    
+</div>
 </main>

@@ -7,7 +7,7 @@
 <div class="container pt-5">
              <form method = "POST" action="index.php?action=Uploader" enctype="multipart/form-data">
                <fieldset>
-                 <legend class="col-md-3">Uploader</legend>
+                 <legend class="col-md-3 text-primary">Uploader</legend>
 
                  <div class="form-group col-md-3">
                    <input type="file" name="uploadedPicture">

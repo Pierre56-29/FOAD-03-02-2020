@@ -7,7 +7,7 @@
 <div class="container pt-5">
              <form method = "POST" action="index.php?action=Inscrire">
                <fieldset>
-                 <legend class="col-md-6">Formulaire d'inscription</legend>
+                 <legend class="col-md-6 text-primary">Formulaire d'inscription</legend>
                  
                  <div class="form-group col-md-6">
                    <label for="login">Saisissez votre login :</label>
