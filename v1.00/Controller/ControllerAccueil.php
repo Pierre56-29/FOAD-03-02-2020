@@ -32,9 +32,14 @@ class ControllerAccueil
             $userName = new UserManager();
             $user = $userName->getUser($picture->getIdUser());
 
-            
+            $votesImage = new VoteManager();
+            $voteLike = $votesImage->getVotelike($picture->getIdPicture());
+            $voteDislike = $votesImage->getVoteDislike($picture->getIdPicture());
+
+            $pictureid = new Picture();
+            $pictureid = $picture->getIdPicture();
                      
-            $resultat[] = array("picture" => $picture,"CommentCount" => $comment,"login" => $user->getLogin());
+            $resultat[] = array("picture" => $picture,"CommentCount" => $comment,"login" => $user->getLogin(),"VoteLike" => $voteLike,  "VoteDislike" => $voteDislike,"login" => $user->getLogin(),"idpicture" => $pictureid);
         }
 
         $vue = new View("Accueil");
@@ -67,7 +72,7 @@ class ControllerAccueil
 
             $resultat[] = array("picture" => $picture,"CommentCount" => $comment, "VoteLike" => $voteLike,  "VoteDislike" => $voteDislike,"login" => $user->getLogin(),"idpicture" => $pictureid);
         }
-        echo json_encode($resultat);
+       
         $vue = new View("AccueilNonInscrit");
         $vue->generer(array("resultat" => $resultat));
     }

@@ -10,9 +10,9 @@
                 </div>
                 
                 <div>
-                    <img class="img-fluid border border-primary rounded mt-2" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture" position="absolute"/>
-                    <i class="fas fa-thumbs-up"><?php echo $picture['VoteLike'];?></i>
-                    <i class="fas fa-thumbs-down"><?php echo $picture['VoteDislike'];?></i>
+                    <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture" position="absolute"/>
+                    <i class="fas fa-thumbs-up" id="like<?php echo $picture["idpicture"] ?>"><?php echo $picture['VoteLike'];?></i>
+                    <i class="fas fa-thumbs-down" id="dislike<?php echo $picture["idpicture"] ?>"><?php echo $picture['VoteDislike'];?></i>
                 </div>
                 <p class="border rounded mt-1"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
             </div>   
@@ -37,38 +37,3 @@
 </form>
 
 </main>
-<script
-			  src="https://code.jquery.com/jquery-3.4.1.js"
-			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-			  crossorigin="anonymous"></script>
-<script>
-
-    $('.fa-thumbs-up').on('click',function(){
-        if ($(this).hasClass("text-success")){
-            $(this).removeClass("text-success");
-        }else{
-            $(this).addClass("text-success");   
-            $(this).siblings().removeClass("text-danger")}
-        
-        $.ajax({
-        url: "action.php",
-        type: "POST",
-        data:"",
-        success:function(response){}}) 
-    });   
-            
-    $('.fa-thumbs-down').on('click',function(){
-        if ($(this).hasClass("text-danger")){
-            $(this).removeClass("text-danger");
-        }else{
-            $(this).addClass("text-danger");   
-            $(this).siblings().removeClass("text-success");}
-            
-    var data = $(resultats).serializeArray();
-    $.ajax({
-        url: "action.php",
-        type: "POST",
-        data:$(this),
-        success:function(response){}})});
-        
-</script>

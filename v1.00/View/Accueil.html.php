@@ -14,8 +14,8 @@
                     </a>
                 </div>
                 <div>
-                    <i class="fas fa-thumbs-up"></i>
-                    <i class="fas fa-thumbs-down"></i>
+                    <i class="fas fa-thumbs-up" id="like<?php echo $picture["idpicture"] ?>"><?php echo $picture['VoteLike'];?></i>
+                    <i class="fas fa-thumbs-down" id="dislike<?php echo $picture["idpicture"] ?>"><?php echo $picture['VoteDislike'];?></i>
                 </div>
                 <p class="border border-primary rounded mt-2"><?php $tags = $picture["picture"]->getTags();
                          $tags = explode(",",$tags);
@@ -59,4 +59,55 @@
         } ?>
         </ul>
         </nav>
-    <?php }  ?> 
+    <?php }  ?>
+    
+    
+<script>
+    $('.fa-thumbs-up').on('click',function(){
+
+        var idPicture = $(this).attr('id');
+        idPicture = idPicture.slice(4)
+        console.log(idPicture);
+
+        idPicture = encodeURIComponent(idPicture);
+        
+        if ($(this).hasClass("text-success")){
+            $(this).removeClass("text-success");
+
+        }else{
+            $(this).addClass("text-success");   
+            $(this).siblings().removeClass("text-danger");
+
+            $.ajax({
+                url:"Controller/RouteurLikeDislike.php",
+                type: "POST",
+                data: "action=Like"+"&idPicture="+idPicture,
+                success:function(){
+                    console.log("done");
+                },
+                error:function(){
+                    console.log("done");
+                }
+            })
+            
+        }
+    });
+
+        
+ 
+            
+    $('.fa-thumbs-down').on('click',function(){
+        if ($(this).hasClass("text-danger")){
+            $(this).removeClass("text-danger");
+        }else{
+            $(this).addClass("text-danger");   
+            $(this).siblings().removeClass("text-success");}})
+
+    
+    
+    
+    </script>
+
+    
+    
+     
