@@ -1,23 +1,30 @@
+<head>
+  <link rel="stylesheet" href="Css/bootstrap.min.css">
+  <link rel="stylesheet" href="Css/style.css">
+  <title>Accueil</title>
+</head>
+
+<body>
 <main class="container mt-4">
     <div class="row">
     <?php forEach($resultat as $picture)
     {
         ?>
-            <div class="col-md-6 col-lg-3 card m-1 pt-1">
-                <div class="d-flex align-items-center text-white bg-primary rounded pl-1">
+            <div class="carte card border-primary p-1 m-2">
+                <div class="d-flex align-items-center text-white bg-primary pl-1 rounded">
                     <i class="fas fa-user"></i>
-                    <p class="mx-auto my-auto"><?php echo $picture["login"] ?></p>
+                    <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture["login"] ?></p>
                 </div>
-                <div class="border border-primary rounded mt-2 pl-1 pr-1 w-100 h-100 text-center">
+                <div class="photo border border-primary rounded mt-2">
                     <a href="index.php?action=PagePicture&Picture=<?php echo $picture['picture']->getIdPicture(); ?>">
-                        <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture"/>
+                        <img class="image img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture"/>
                     </a>
                 </div>
                 <div>
                     <i class="fas fa-thumbs-up" id="like<?php echo $picture["idpicture"] ?>"><?php echo $picture['VoteLike'];?></i>
                     <i class="fas fa-thumbs-down" id="dislike<?php echo $picture["idpicture"] ?>"><?php echo $picture['VoteDislike'];?></i>
                 </div>
-                <p class="border border-primary rounded mt-2"><?php $tags = $picture["picture"]->getTags();
+                <p class="commentaire border border-primary rounded mt-2 "><?php $tags = $picture["picture"]->getTags();
                          if(strlen($tags) > 25)
                          {
                             $tags = substr($tags,0,24);
@@ -31,7 +38,7 @@
                             }  
                     ?>
                 </p>
-                <p class="border rounded"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
+                <p class="commentaire border rounded"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
             </div>   
     <?php } ?>
     </div>
@@ -65,6 +72,8 @@
         </ul>
         </nav>
     <?php }  ?>
+</main>
+</body>
     
     
 <script>

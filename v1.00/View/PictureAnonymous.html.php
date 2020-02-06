@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-12">
             <div class="d-flex">
-                <p><?php echo $picture->getFilename(); ?></p>
+                <p class="font-weight-bold text text-primary"><?php echo $picture->getFilename(); ?></p>
             </div>
             <div>
                 <img class="img-fluid" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
@@ -24,7 +24,7 @@
                         ?>
                     </p>
                 </div>
-                <div class="col-2">
+                <div class="col-2 font-italic text-right small">
                     <?php echo $picture->getDateUpload(); ?>
                 </div>
             </div>
