@@ -1,7 +1,8 @@
+
 <main class="container mt-4">
     <div class="row">
     <?php forEach($resultat as $picture)
-    {
+    {  
         ?>
             <div class="col-md-6 col-lg-3 card m-1 pt-1">
                 <div class="d-flex align-items-center text-white bg-primary rounded pl-1">
@@ -9,15 +10,15 @@
                     <p class="mx-auto my-auto"><?php echo $picture["login"] ?></p>
                 </div>
                 <div class="border border-primary rounded mt-2 pl-1 pr-1 w-100 h-100 text-center">
-                    <a href="index.php?action=PagePicture&Picture=<?php echo $picture['picture']->getIdPicture(); ?>">
-                        <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture"/>
+                    <a href="index.php?action=PagePicture&Picture=<?php echo $picture['idPicture']; ?>">
+                        <img class="img-fluid" src="<?php echo $picture["link"]; ?>" alt="picture"/>
                     </a>
                 </div>
                 <div>
-                    <i class="fas fa-thumbs-up" id="like<?php echo $picture['picture']->getIdPicture(); ?>"><?php echo $picture['VoteLike'];?></i>
-                    <i class="fas fa-thumbs-down" id="dislike<?php echo $picture['picture']->getIdPicture(); ?>"><?php echo $picture['VoteDislike'];?></i>
+                    <i class="fas fa-thumbs-up" id="like<?php echo $picture['idPicture']; ?>"><?php echo $picture['VoteLike'];?></i>
+                    <i class="fas fa-thumbs-down" id="dislike<?php echo $picture['idPicture']; ?>"><?php echo $picture['VoteDislike'];?></i>
                 </div>
-                <p class="border border-primary rounded mt-2"><?php $tags = $picture["picture"]->getTags();
+                <p class="border border-primary rounded mt-2"><?php $tags = $picture["tags"];
                          if(strlen($tags) > 25)
                          {
                             $tags = substr($tags,0,24);

@@ -150,4 +150,27 @@ class PictureManager extends Modele
         }
     }
 
+    public function searchPicture($search)
+    {
+        $req = "SELECT * FROM picture WHERE status ='public' AND";
+        
+        forEach($search as $mot)
+        {
+            $req.=" fileName LIKE '%$mot%' OR tags LIKE '%$mot%' OR ";
+        }
+        $req = substr($req, 0, -3);
+        $res = $this->executeReq($req);
+        
+        $pictures = [];
+
+        while($donnes =$res->fetch(PDO::FETCH_ASSOC))
+        {
+            $picture = new Picture();
+            $picture->hydrate($donnes);
+            $pictures[] = $picture;
+        }
+
+        return $pictures;
+    }
+
 }

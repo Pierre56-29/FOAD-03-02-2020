@@ -233,6 +233,93 @@ class ControllerPicture
             echo "Vous n'avez pas les droits pour changer le satut de cette image";
         }
     }
+
+    public function search($search, $indexPage = 1)
+    {
+        $_SESSION['search'] = ""; // on enlève l'ancienne recherhce mise en mémoire;
+        if($search ==="")
+        {
+            $vue = new View("Search");
+            $vue->generer(array("messageRetour" => "Veuillez au moins remplir le champs de recherche..."));
+        }
+        else
+        {
+             //assainir données
+            $search = trim(htmlspecialchars($search));
+            $search = explode(" ",$search);
+
+            // rechercher bdd
+            $pictureSearch= new PictureManager();
+            $res = $pictureSearch->searchPicture($search);
+            
+            if(empty($res))
+            {
+                $vue = new Vue("Search");
+                $vue->generer(array("messageRetour" => "Pas de résultats pour cette recherche"));
+            }
+            else 
+            {
+                $picturesArray = $this->calculPoids($res, $search);
+
+                if(count($picturesArray) > 1)
+                {
+                    $picturesSorted = $this->trierArticlesParPoids($picturesArray);
+                }
+                else {
+                    $picturesSorted = $picturesArray;
+                }
+                // on enregistre les résultats de la recherche dans une variable pour les pages 2,3...
+                $_SESSION['search'] = $picturesSorted;
+             
+                $this->genererSearch($indexPage, $picturesSorted);
+             
+                
+            }
+        }
+    }
+
+    public function genererSearch($indexPage, $picturesSorted)
+    {
+   
+        if($picturesSorted === "")
+        {
+            $picturesSorted =  $_SESSION['search'];
+        }
+ 
+        $countPicture = count($picturesSorted);
+        $nbPages = ceil(($countPicture/8));
+        $indexDebut = $this->donnerIndexPageBdd($indexPage);
+        $indexFin = count($picturesSorted) - $indexDebut;
+        if($indexFin > 8) {$indexFin=8;} 
+        // on prend que les 8 images ou les dernières pour la page en cours
+    
+        $pictureRender =[];
+        for ($i = $indexDebut ; $i < $indexFin ; $i++)
+        { 
+            $pictureRender[] = $picturesSorted[$i];
+        }
+
+        $resultat = [];
+        forEach($pictureRender as $picture)
+        {
+            $commentsImage = new CommentManager();
+            $comment =$commentsImage->getCommentsCountByPicture($picture['idPicture']);
+            
+            $userName = new UserManager();
+            $user = $userName->getUser($picture['idUser']);
+
+            $votesImage = new VoteManager();
+            $voteLike = $votesImage->getVotelike($picture['idPicture']);
+            $voteDislike = $votesImage->getVoteDislike($picture['idPicture']);
+                     
+            $resultat[] = array("picture" => $picture,"CommentCount" => $comment,"login" => $user->getLogin(),"VoteLike" => $voteLike,  "VoteDislike" => $voteDislike,"login" => $user->getLogin());
+        }
+
+
+        $vue = new View("Search");
+        $vue->generer(array("resultat" => $resultat, "nbPages" => $nbPages, "indexPage" => $indexPage));
+    }
+
     private function creerUrl()
         {
             $caracteres = [
@@ -251,5 +338,61 @@ class ControllerPicture
             return $mot;
         }
     
+    private function calculPoids($picturesFound, $search)
+    {
+        $picturesArray = array();
+        foreach($picturesFound as $picture) 
+        {
+          
+            $lignePicture = array();
+
+            //Remplir le tableau ligne article
+            $lignePicture['idPicture'] = $picture->getIdPicture();
+            $lignePicture['fileName'] = $picture->getFileName();
+            $lignePicture['dateUpload'] = $picture->getDateUpload();
+            $lignePicture['link'] =$picture->getLink();
+            $lignePicture['tags'] = $picture->getTags();
+            $lignePicture['idUser'] = $picture->getIdUser();
+            $lignePicture['poids'] = 0;
+            
+           
+            foreach ($search as $element) 
+            {
+                // mettre en gras et compter
+                $lignePicture['fileName'] = preg_replace('#'.$element.'#i', "<b>{$element}</b>", $lignePicture['fileName'],-1,$count1);
+                $lignePicture['tags'] = preg_replace('#'.$element.'#i', "<b>{$element}</b>", $lignePicture['tags'],-1,$count2);
+                $poids = $count1 + $count2;
+                //Mettre le poids fort
+                $lignePicture['poids'] = $poids;
+            }
+           
+            $picturesArray[] = $lignePicture;
+        
+        }
+        return $picturesArray;
+    }
+
+    private function trierArticlesParPoids($tableau)
+    {
+        function ordonne($a, $b) {
+            if ($a['poids'] == $b['poids']) {
+                return 0;
+            }
+            return ($a['poids'] < $b['poids']) ? 1 : -1;
+        }
+        usort($tableau, "ordonne");
+        return $tableau;
+    }
+
+    private function donnerIndexPageBdd($indexPage)
+    {
+        $index = 0;
+        $page = htmlspecialchars($indexPage);    
+        for ($i = 1; $i < $indexPage ; $i++)
+        {
+            $index +=8;
+        }
+        return $index;
+    }
 
 }

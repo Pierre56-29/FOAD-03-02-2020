@@ -59,6 +59,16 @@
                             $this->ctrlPicture->deletePicture(0);
                         }
                     break;    
+                    case"Search":
+                        $this->ctrlPicture = new ControllerPicture();
+                        if(isset($_POST['search']))
+                        {
+                            $this->ctrlPicture->search($_POST['search']);
+                        }
+                        else {
+                            $this->ctrlPicture->search("");
+                        }
+                    break;
                 }
             }
             else if(isset($_GET['action']))

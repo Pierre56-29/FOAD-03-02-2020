@@ -44,8 +44,8 @@
     
 
     </div>
-    <form class="form-inline">
-      <input type="text" class="col-xs-4 form-control" placeholder="Search">
+    <form class="form-inline" method="POST" action="index.php?action=Search">
+      <input type="text" class="col-xs-4 form-control" placeholder="Search" name="search">
     </form>
     
   </nav>

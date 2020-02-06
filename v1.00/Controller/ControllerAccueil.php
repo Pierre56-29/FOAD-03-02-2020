@@ -35,11 +35,8 @@ class ControllerAccueil
             $votesImage = new VoteManager();
             $voteLike = $votesImage->getVotelike($picture->getIdPicture());
             $voteDislike = $votesImage->getVoteDislike($picture->getIdPicture());
-
-            $pictureid = new Picture();
-            $pictureid = $picture->getIdPicture();
                      
-            $resultat[] = array("picture" => $picture,"CommentCount" => $comment,"login" => $user->getLogin(),"VoteLike" => $voteLike,  "VoteDislike" => $voteDislike,"login" => $user->getLogin(),"idpicture" => $pictureid);
+            $resultat[] = array("picture" => $picture,"CommentCount" => $comment,"login" => $user->getLogin(),"VoteLike" => $voteLike,  "VoteDislike" => $voteDislike,"login" => $user->getLogin());
         }
 
         $vue = new View("Accueil");
