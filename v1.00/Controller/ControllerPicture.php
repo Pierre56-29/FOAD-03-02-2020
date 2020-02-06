@@ -8,6 +8,7 @@ class ControllerPicture
         {
             $filename=trim(htmlspecialchars($filename));
             $tags==trim(htmlspecialchars($tags));
+
             if($status ==="private" || $status ==="public")
             {
                 $PictureVerification = new PictureVerification();

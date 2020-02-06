@@ -16,13 +16,19 @@
                     <a href="index.php?action=DeletePicture&Picture=<?php echo $picture->getIdPicture(); ?>"> <button class="btn btn-danger">Supprimer</button></a>
                 </div>
                 <p><?php $tags = $picture->getTags();
-                         $tags = explode(",",$tags);
-                         for($i = 0 ; $i <count($tags); $i++)
-                         {
-                             echo '#'. $tags[$i] . " ";
-                             if ($i >= 2) { break;}
-                         }    
-                    ?>
+                    if(strlen($tags) > 25)
+                    {
+                        $tags = substr($tags,0,24);
+                        $tags .= "...";
+                    }
+                        $tags = explode(",",$tags);
+                        for($i = 0 ; $i <count($tags); $i++)
+                        {
+                                echo '#'. $tags[$i] . " ";
+                            if ($i >= 2) { break;}
+                        }  
+                ?>
+                    
                 </p>
             </div>   
     <?php } ?>
