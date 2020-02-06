@@ -1,4 +1,4 @@
-<main class="container mt-3">
+<main class="container mt-4">
     <div class="row">
     <?php forEach($resultat as $picture)
     {
@@ -8,7 +8,7 @@
                     <i class="fas fa-user"></i>
                     <p class="mx-auto my-auto"><?php echo $picture["login"] ?></p>
                 </div>
-                <div class="border border-primary rounded mt-2 pl-1 pr-1 w-100 h-100 text-center ">
+                <div class="border border-primary rounded mt-2 pl-1 pr-1 w-100 h-100 text-center">
                     <a href="index.php?action=PagePicture&Picture=<?php echo $picture['picture']->getIdPicture(); ?>">
                         <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture"/>
                     </a>
@@ -18,12 +18,17 @@
                     <i class="fas fa-thumbs-down" id="dislike<?php echo $picture["idpicture"] ?>"><?php echo $picture['VoteDislike'];?></i>
                 </div>
                 <p class="border border-primary rounded mt-2"><?php $tags = $picture["picture"]->getTags();
-                         $tags = explode(",",$tags);
-                         for($i = 0 ; $i <count($tags); $i++)
+                         if(strlen($tags) > 25)
                          {
-                             echo '#'. $tags[$i] . " ";
-                             if ($i >= 2) { break;}
-                         }    
+                            $tags = substr($tags,0,24);
+                            $tags .= "...";
+                         }
+                            $tags = explode(",",$tags);
+                            for($i = 0 ; $i <count($tags); $i++)
+                            {
+                                    echo '#'. $tags[$i] . " ";
+                                if ($i >= 2) { break;}
+                            }  
                     ?>
                 </p>
                 <p class="border rounded"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 

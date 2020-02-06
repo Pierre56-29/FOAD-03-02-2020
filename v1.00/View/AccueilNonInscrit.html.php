@@ -1,39 +1,55 @@
-<main class="container mt-5">
+<main class="container mt-4">
     <div class="row">
     <?php forEach($resultat as $picture)
     {
         ?>
-            <div class="col-md-6 col-lg-3">
-                <div class="d-flex align-items-center text-white bg-primary rounded pl-1">
+            <div class="card border-primary m-1 p-1 col-md-6 col-lg-3">
+                <div class="d-flex align-items-center text-white bg-primary pl-1 rounded">
                     <i class="fas fa-user"></i>
                     <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture["login"] ?></p>
                 </div>
                 
+                <div class="mt-2 pl-1 pr-1 w-100 h-100 ">
+                    <img class="img-fluid border border-primary rounded mt-2" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture" position="absolute"/>
                 <div>
-                    <img class="img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture" position="absolute"/>
-                    <i class="fas fa-thumbs-up" id="like<?php echo $picture["idpicture"] ?>"><?php echo $picture['VoteLike'];?></i>
-                    <i class="fas fa-thumbs-down" id="dislike<?php echo $picture["idpicture"] ?>"><?php echo $picture['VoteDislike'];?></i>
+                    <i class="fas fa-thumbs-up" id="like<?php echo $picture['idpicture']?>"><?php echo $picture['VoteLike'];?></i>
+                    <i class="fas fa-thumbs-down" id="dislike<?php echo $picture['idpicture']?>"><?php echo $picture['VoteDislike'];?></i>
                 </div>
-                <p class="border rounded mt-1"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
+                </div>
+                <p class="border rounded"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
             </div>   
     <?php } ?>
     </div>
 
-    <div class="row mt-5">
-        <div class="col-lg-6 text-center">
+    <div class="row mt-5 mb-5">
+        <div class="col-lg-10 text-center">
             Sans être connecté, testez un upload de fichier pour obtenir un lien privé de votre image
         </div>
     </div>
-    <form>
+    <form method="POST" action="index.php?action=UploadAnonymous" enctype="multipart/form-data">
     <div class="custom-file">
-        <input type="file" class="custom-file-input" id="customFile" name="pictureUpload">
-        <label class="custom-file-label" for="customFile">Choisissez une image</label>
+
+        <input type="file" class="custom-file-input" id="customFile" name="uploadedPicture">
+        <label class="custom-file-label" for="customFile">Choisissez votre image</label>
     </div>
-    <div class="form-group">
-    <label for="tagsImage">Taggez votre image</label>
-    <input type="text" class="form-control" id="tagsImage">
+    <div class="form-group mt-5">
+        <label for="filename">Choisissez un titre...</label>
+        <input type="text" class="form-control" name="filename" id="filename" />
+        
+    </div>
+    <div class="form-group mt-5">
+    <label for="tagsImage">et taggez votre image</label>
+        <input type="text"  data-role="tagsinput" name ="tags" id="tagsImages" placeholder="#tags"/>
   </div>
   <button type="submit" class="btn btn-primary">Uploader</button>
 </form>
-
+        <?php if(isset($_SESSION['messageRetour'])) { echo $_SESSION['messageRetour'];} ?>
 </main>
+<script>
+    $('#customFile').change(function(event){
+        var fileName = event.target.files[0].name;
+        if (event.target.nextElementSibling!=null){
+            event.target.nextElementSibling.innerText=fileName;
+        }
+    });
+</script>

@@ -4,12 +4,15 @@ class PictureManager extends Modele
 {
     public function add(Picture $picture)
     {
-        $req ='INSERT INTO picture(fileName, status, link, tags, idUser) VALUES(?, ?, ?, ?, ?)';
-        if(empty($_SESSION['idUser']))
+        
+        if(empty($_SESSION['idUser'])) // upload anonyme
         {
-            $this->executeReq($req,array($picture->getFilename(), $picture->getStatus(),$picture->getLink(), $picture->getTags(),1)); 
+            $req ='INSERT INTO picture(fileName, status, link, tags, idUser, urlAnonymous) VALUES(?, ?, ?, ?, ?, ?)';
+            $this->executeReq($req,array($picture->getFilename(), "private" ,$picture->getLink(), $picture->getTags(),1, $picture->getUrlAnonymous())); 
         }
-        else {
+        else // upload connecté
+        { 
+            $req ='INSERT INTO picture(fileName, status, link, tags, idUser) VALUES(?, ?, ?, ?, ?)';
             $this->executeReq($req,array($picture->getFilename(), $picture->getStatus(),$picture->getLink(), $picture->getTags(),$_SESSION['idUser']));
         }
         return "Votre image a été ajouté avec succès";
@@ -59,16 +62,16 @@ class PictureManager extends Modele
 
     public function delete($idPicture)
     {
-        $req='DELETE * from pictures WHERE idPicture = ?';
-        $res = $this->executeReq($req,$idPicture);
+        $req='DELETE from picture WHERE idPicture = ?';
+        $res = $this->executeReq($req,array($idPicture));
 
-        return "Supprimé avec succès";
+        return true;
     }
 
     public function changeStatus($idPicture)
     {
         $req="UPDATE picture SET status=?";
-        $res = $this->executeReq($req,$idPicture);
+        $res = $this->executeReq($req,array($idPicture));
 
         return " Modifié avec succès";
     }
@@ -96,6 +99,39 @@ class PictureManager extends Modele
         else {
             return false;
         }
+    }
+
+    public function getPicture($idPicture)
+    {
+        $req = "SELECT * from picture WHERE idPicture=?";
+        $res = $this->executeReq($req,array($idPicture));
+        $res = $res->fetch(PDO::FETCH_ASSOC);
+        if($res !== false)
+        {
+            $picture = new Picture();
+            $picture->hydrate($res);
+            return $picture;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function getAnonymousPicture($urlAnonymous)
+    {
+        $req ="SELECT * FROM picture WHERE status = 'private' AND urlAnonymous= ?";
+        $res = $this->executeReq($req,array($urlAnonymous));
+        $res = $res->fetch(PDO::FETCH_ASSOC);
+        if($res !== false)
+        {
+            $picture = new Picture();
+            $picture->hydrate($res);
+            return $picture;
+        }
+        else {
+            return false;
+        }
+
     }
 
 }
