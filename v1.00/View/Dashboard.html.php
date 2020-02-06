@@ -10,7 +10,17 @@
                     <h4 class="text-center text-white bg-primary rounded text-white bg-primary rounded pl-1  pt-1 pb-1"><?php echo $picture->getFilename() ?></h4>
                 </div>
                 <div>
-                    <img class="img-fluid border border-primary rounded mt-2 mb-2" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
+                <?php if($picture->getStatus() === "public")
+                    {?>
+                        <a href="index.php?action=PagePicture&Picture=<?php echo $picture->getIdPicture(); ?>">
+                            <img class="img-fluid border border-primary rounded mt-2 mb-2" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
+                        </a>
+                    <?php }
+                    else { ?>
+                        <a href="index.php?action=PagePrivatePicture&Picture=<?php echo $picture->getIdPicture(); ?>">
+                            <img class="img-fluid border border-primary rounded mt-2 mb-2" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
+                        </a>
+                    <?php } ?>
                     <input type="checkbox" data-toggle="toggle" data-on="Publique" data-onstyle="primary" data-off="Privé" data-offstyle="default border" class="custom-control-input" 
                     <?php if( $picture->getstatus() =="public") { echo 'checked'; } ?>>
                     <a href="index.php?action=DeletePicture&Picture=<?php echo $picture->getIdPicture(); ?>"> <button class="btn btn-danger">Supprimer</button></a>

@@ -1,9 +1,9 @@
 <main class="container mt-4">
-    <div class="row">
+    <div class="row justify-content-around">
     <?php forEach($resultat as $picture)
     {
         ?>
-            <div class="card border-primary m-1 p-1 col-md-6 col-lg-3">
+            <div class="card border-primary p-1 mb-2 col-md-6 col-lg-3">
                 <div class="d-flex align-items-center text-white bg-primary pl-1 rounded">
                     <i class="fas fa-user"></i>
                     <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture["login"] ?></p>
