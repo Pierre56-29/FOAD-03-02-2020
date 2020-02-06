@@ -1,11 +1,11 @@
 
 
-<main class="container mt-5">
+<main class="container mt-4">
     <div class="row">
     <?php forEach($resultat as $picture)
     {
         ?>
-            <div class="col-md-6 col-lg-3">
+            <div class="col-md-6 col-lg-3 card m-1 pt-1">
                 <div>
                     <h4 class="text-center text-white bg-primary rounded text-white bg-primary rounded pl-1  pt-1 pb-1"><?php echo $picture->getFilename() ?></h4>
                 </div>
@@ -15,7 +15,7 @@
                     <?php if( $picture->getstatus() =="public") { echo 'checked'; } ?>>
                     <a href="index.php?action=DeletePicture&Picture=<?php echo $picture->getIdPicture(); ?>"> <button class="btn btn-danger">Supprimer</button></a>
                 </div>
-                <p><?php $tags = $picture->getTags();
+                <p class="border border-primary rounded mt-2"><?php $tags = $picture->getTags();
                     if(strlen($tags) > 25)
                     {
                         $tags = substr($tags,0,24);

@@ -7,7 +7,7 @@
 <div class="container pt-5">
              <form method = "POST" action="index.php?action=Connecter">
                <fieldset>
-                 <legend class="col-md-6">Connexion</legend>
+                 <legend class="col-md-6 text-primary">Connexion</legend>
                  
                  <div class="form-group col-md-6">
                    <label for="login">Saisir votre login :</label>
