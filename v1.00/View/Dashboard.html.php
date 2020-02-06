@@ -1,6 +1,7 @@
 
 
 <main class="container mt-4">
+    <div id="erreurSwitchStatus"></div>
     <div class="row">
     <?php forEach($resultat as $picture)
     {
@@ -12,16 +13,16 @@
                 <div>
                 <?php if($picture->getStatus() === "public")
                     {?>
-                        <a href="index.php?action=PagePicture&Picture=<?php echo $picture->getIdPicture(); ?>">
+                        <a id="link<?php echo $picture->getIdPicture(); ?>" href="index.php?action=PagePicture&Picture=<?php echo $picture->getIdPicture(); ?>">
                             <img class="img-fluid border border-primary rounded mt-2 mb-2" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
                         </a>
                     <?php }
                     else { ?>
-                        <a href="index.php?action=PagePrivatePicture&Picture=<?php echo $picture->getIdPicture(); ?>">
+                        <a id="link<?php echo $picture->getIdPicture(); ?>" href="index.php?action=PagePrivatePicture&Picture=<?php echo $picture->getIdPicture(); ?>">
                             <img class="img-fluid border border-primary rounded mt-2 mb-2" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
                         </a>
                     <?php } ?>
-                    <input type="checkbox" data-toggle="toggle" data-on="Publique" data-onstyle="primary" data-off="Privé" data-offstyle="default border" class="custom-control-input" 
+                    <input id="<?php echo $picture->getIdPicture(); ?>"  data-style="slow" data-width="125"type="checkbox" data-toggle="toggle" data-on="Publique" data-onstyle="primary" data-off="Privé" data-offstyle="default border" class="custom-control-input publicPrivateButton" 
                     <?php if( $picture->getstatus() =="public") { echo 'checked'; } ?>>
                     <a href="index.php?action=DeletePicture&Picture=<?php echo $picture->getIdPicture(); ?>"> <button class="btn btn-danger">Supprimer</button></a>
                 </div>
@@ -77,3 +78,34 @@
     <?php }  ?> 
 
 </main>
+
+<script>
+
+$('.publicPrivateButton').change(function() {
+    var status = $(this).prop('checked');
+    var idPicture = $(this).attr('id');
+    
+    //on passe en public ou privé l'image
+
+    $.ajax({
+        url:"index.php",
+        type: "POST",
+        data: "ajax=SwitchStatusPicture"+"&idPicture="+idPicture+"&status="+status,
+        success:function(){
+            if(status === false)
+            {
+                $("#link"+idPicture).attr("href", "index.php?action=PagePrivatePicture&Picture="+idPicture);
+            }
+            else
+            {
+                $("#link"+idPicture).attr("href", "index.php?action=PagePicture&Picture="+idPicture);
+            }
+        },
+        error:function(resultat){
+            $("#erreurSwitchStatus").text(resultat);
+        }
+    });
+});
+     
+
+</script>

@@ -3,6 +3,7 @@
 class RouteurAjax{
 
     private $ctrlVote;
+    private $ctrlPicture;
 
     public function router()
     {
@@ -29,6 +30,10 @@ class RouteurAjax{
                 case "Undislike":
                     $this->ctrlVote = new ControllerVote;
                     $this->ctrlVote->undislikePicture($_POST['idPicture'],$_SESSION['idUser']);
+                break;
+                case"SwitchStatusPicture":
+                    $this->ctrlPicture = new ControllerPicture();
+                    $this->ctrlPicture->SwitchStatusPicture($_POST['idPicture'], $_POST['status']);
                 break;
             }
         }
