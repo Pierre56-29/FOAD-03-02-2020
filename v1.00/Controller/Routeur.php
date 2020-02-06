@@ -41,6 +41,10 @@
                         $this->ctrlPicture = new ControllerPicture();
                         $this->ctrlPicture->renderPicture($_GET['Picture']);
                     break;
+                    case"PagePrivatePicture":
+                        $this->ctrlPicture = new ControllerPicture();
+                        $this->ctrlPicture->renderPrivatePicture($_GET['Picture']);
+                    break;
                     case"Commenter":
                         $this->ctrlComment = new ControllerComment();
                         $this->ctrlComment->commenter($_POST['title'], $_POST['content'], $_POST['idPicture']);

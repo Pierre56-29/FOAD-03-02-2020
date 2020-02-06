@@ -1,6 +1,7 @@
 
 
 <main class="container mt-4">
+    <div id="erreurSwitchStatus"></div>
     <div class="row">
     <?php forEach($resultat as $picture)
     {
@@ -9,17 +10,25 @@
                 <div>
                     <h4 class="text-center text-white bg-primary rounded text-white bg-primary rounded pl-1 pt-1 pb-1"><?php echo $picture->getFilename() ?></h4>
                 </div>
-                     <div >
-                        <img class="img-fluid" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
-                    </div>
-                    <div>
-                        <input type="checkbox" data-toggle="toggle" data-on="Publique" data-onstyle="primary" data-off="Privé" data-offstyle="default border" class="custom-control-input" 
-                        <?php if( $picture->getstatus() =="public") { echo 'checked'; } ?>>
-                        <a href="index.php?action=DeletePicture&Picture=<?php echo $picture->getIdPicture(); ?>"> <button class="btn btn-danger">Supprimer</button></a>
-                    </div>
-                    <p class="commentaire border border-primary rounded mt-2"><?php $tags = $picture->getTags();
-                      if(strlen($tags) > 25)
-                        {
+                <div>
+                <?php if($picture->getStatus() === "public")
+                    {?>
+                        <a id="link<?php echo $picture->getIdPicture(); ?>" href="index.php?action=PagePicture&Picture=<?php echo $picture->getIdPicture(); ?>">
+                            <img class="img-fluid border border-primary rounded mt-2 mb-2" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
+                        </a>
+                    <?php }
+                    else { ?>
+                        <a id="link<?php echo $picture->getIdPicture(); ?>" href="index.php?action=PagePrivatePicture&Picture=<?php echo $picture->getIdPicture(); ?>">
+                            <img class="img-fluid border border-primary rounded mt-2 mb-2" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
+                        </a>
+                    <?php } ?>
+                    <input id="<?php echo $picture->getIdPicture(); ?>"  data-style="slow" data-width="125"type="checkbox" data-toggle="toggle" data-on="Publique" data-onstyle="primary" data-off="Privé" data-offstyle="default border" class="custom-control-input publicPrivateButton" 
+                    <?php if( $picture->getstatus() =="public") { echo 'checked'; } ?>>
+                    <a href="index.php?action=DeletePicture&Picture=<?php echo $picture->getIdPicture(); ?>"> <button class="btn btn-danger">Supprimer</button></a>
+                </div>
+                <p class="commentaire border border-primary rounded mt-2"><?php $tags = $picture->getTags();
+                    if(strlen($tags) > 25)
+                    {
                         $tags = substr($tags,0,24);
                         $tags .= "...";
                         }
@@ -70,3 +79,34 @@
     <?php }  ?> 
 
 </main>
+
+<script>
+
+$('.publicPrivateButton').change(function() {
+    var status = $(this).prop('checked');
+    var idPicture = $(this).attr('id');
+    
+    //on passe en public ou privé l'image
+
+    $.ajax({
+        url:"index.php",
+        type: "POST",
+        data: "ajax=SwitchStatusPicture"+"&idPicture="+idPicture+"&status="+status,
+        success:function(){
+            if(status === false)
+            {
+                $("#link"+idPicture).attr("href", "index.php?action=PagePrivatePicture&Picture="+idPicture);
+            }
+            else
+            {
+                $("#link"+idPicture).attr("href", "index.php?action=PagePicture&Picture="+idPicture);
+            }
+        },
+        error:function(resultat){
+            $("#erreurSwitchStatus").text(resultat);
+        }
+    });
+});
+     
+
+</script>

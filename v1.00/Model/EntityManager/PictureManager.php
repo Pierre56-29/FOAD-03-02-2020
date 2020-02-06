@@ -68,12 +68,12 @@ class PictureManager extends Modele
         return true;
     }
 
-    public function changeStatus($idPicture)
+    public function changeStatusPicture($idPicture, $status)
     {
-        $req="UPDATE picture SET status=?";
-        $res = $this->executeReq($req,array($idPicture));
+        $req="UPDATE picture SET status=? WHERE idPicture = ?";
+        $res = $this->executeReq($req,array($status,$idPicture));
 
-        return " Modifié avec succès";
+        return true;
     }
 
     public function getCountPublicPictures()
@@ -132,6 +132,22 @@ class PictureManager extends Modele
             return false;
         }
 
+    }
+
+    public function getPrivatePicture($idPicture)
+    {
+        $req = "SELECT * from picture WHERE status='private' AND idPicture=?";
+        $res = $this->executeReq($req,array($idPicture));
+        $res = $res->fetch(PDO::FETCH_ASSOC);
+        if($res !== false)
+        {
+            $picture = new Picture();
+            $picture->hydrate($res);
+            return $picture;
+        }
+        else {
+            return false;
+        }
     }
 
 }

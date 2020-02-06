@@ -7,9 +7,7 @@ class VoteManager extends Modele
         $reqdislike = 'SELECT COUNT(score)  FROM vote WHERE idPicture =? AND score=-1';
         $resdislike = $this->executeReq($reqdislike,array($idpicture));
         $nbdislike=$resdislike->fetch(PDO::FETCH_ASSOC);
-          
-        
-            return $nbdislike["COUNT(score)"];
+        return $nbdislike["COUNT(score)"];
     }
     public function getVoteLike($idpicture)
     {
@@ -22,13 +20,59 @@ class VoteManager extends Modele
     public function likePicture($idpicture, $iduser)
     {
         $idpicture=intval($idpicture);
+        $iduser=intval($iduser);
         
-        $req = 'INSERT INTO vote(score,idUser,idPicture) VALUES (score=1,idUser=?, idPicture=?)';
-        $req = $this->executeReq($req,array( $iduser, $idpicture,));
+        $req1 = 'SELECT score, idUser, idPicture FROM vote WHERE idPicture=? AND idUser=?';
+        $req1 = $this->executeReq($req1,array($idpicture, $iduser ));    
+        $result=$req1->fetch(PDO::FETCH_ASSOC);
+        
+        if (is_array($result))
+        {
+            $req = 'UPDATE vote SET score=1 WHERE idUser=? AND idPicture=?';
+            $req = $this->executeReq($req,array($iduser, $idpicture ));     
+        }else{ 
+           $req = 'INSERT INTO vote(score,idUser,idPicture) VALUES (1,?,?)';
+            $req = $this->executeReq($req,array($iduser, $idpicture ));
+        }
+        
     }
-
-    public function unlike()
+    public function unlikePicture($idpicture, $iduser)
     {
+        $idpicture=intval($idpicture);
+        $iduser=intval($iduser);
+        
+       
+        $req = 'UPDATE vote SET score=0 WHERE idUser=? AND idPicture=?';
+        $req = $this->executeReq($req,array($iduser, $idpicture));     
+        
+        
+    }
+    public function dislikePicture($idpicture, $iduser)
+    {
+        $idpicture=intval($idpicture);
+        $iduser=intval($iduser);
+        
+        $req1 = 'SELECT score, idUser, idPicture FROM vote WHERE idPicture=? AND idUser=?';
+        $req1 = $this->executeReq($req1,array($idpicture, $iduser ));    
+        $result=$req1->fetch(PDO::FETCH_ASSOC);
+        
+        if (is_array($result))
+        {
+            $req = 'UPDATE vote SET score=-1 WHERE idUser=? AND idPicture=?';
+            $req = $this->executeReq($req,array($iduser, $idpicture ));     
+        }else{ 
+           $req = 'INSERT INTO vote(score,idUser,idPicture) VALUES (-1,?,?)';
+            $req = $this->executeReq($req,array($iduser, $idpicture ));
+        }
+        
+    }
+    public function undislikePicture($idpicture, $iduser)
+    {
+        $idpicture=intval($idpicture);
+        $iduser=intval($iduser);
 
+        $req = 'UPDATE vote SET score=0 WHERE idUser=? AND idPicture=?';
+        $req = $this->executeReq($req,array($iduser, $idpicture)); 
+        
     }
 }

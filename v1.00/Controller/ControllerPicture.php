@@ -139,6 +139,15 @@ class ControllerPicture
 
     }
 
+    public function renderPrivatePicture($idPicture)
+    {
+        $pictureManager = new PictureManager();
+        $picture = $pictureManager->getPrivatePicture($idPicture);
+
+        $vue = new View("PrivatePicture");
+        $vue->generer(array("picture" => $picture ));
+
+    }
     public function deletePicture($idPicture)
     {
         $idPicture = intval($idPicture);
@@ -194,6 +203,36 @@ class ControllerPicture
             }
         }
     }
+
+    public function SwitchStatusPicture($idPicture, $status)
+    {
+
+        if($status === "true")
+        {
+            $status = "public";
+        }
+        else {
+            $status ="private";
+        }
+
+        $picture = new PictureManager();
+        $picture = $picture->getPicture($idPicture);
+
+        if($picture === false)
+        {
+            echo "Votre image n'existe pas...";
+        }
+        else if($picture->getIdUser() === $_SESSION['idUser'])
+        {
+            $switchPicture = new PictureManager();
+            $res = $switchPicture->changeStatusPicture($idPicture, $status);
+            
+            echo "Salut tu vas bien ?";
+        }
+        else {
+            echo "Vous n'avez pas les droits pour changer le satut de cette image";
+        }
+    }
     private function creerUrl()
         {
             $caracteres = [
@@ -211,4 +250,6 @@ class ControllerPicture
             $mot = str_shuffle($mot);
             return $mot;
         }
+    
+
 }
