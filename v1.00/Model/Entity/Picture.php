@@ -9,6 +9,7 @@ class Picture extends Modele {
     private $tags;
     private $dateUpload;
     private $idUser;
+    private $urlAnonymous;
 
     /**
      * Get the value of idPicture
@@ -145,4 +146,23 @@ class Picture extends Modele {
             $this->idUser = $idUser;
             return $this;      
     }
+
+     /**
+     * Get the value of urlAnonymous
+     */ 
+     public function getUrlAnonymous()
+     {
+         return $this->urlAnonymous;
+     }
+ 
+     /**
+      * Set the value of urlAnonymous
+      *
+      * @return  self
+      */ 
+     public function setUrlAnonymous($urlAnonymous)
+     {
+             $this->urlAnonymous = $urlAnonymous;
+             return $this;      
+     }
 }

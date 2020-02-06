@@ -19,56 +19,35 @@
     <?php } ?>
     </div>
 
-    <div class="row mt-5">
-        <div class="col-lg-6 text-center">
+    <div class="row mt-5 mb-5">
+        <div class="col-lg-10 text-center">
             Sans être connecté, testez un upload de fichier pour obtenir un lien privé de votre image
         </div>
     </div>
-    <form>
+    <form method="POST" action="index.php?action=UploadAnonymous" enctype="multipart/form-data">
     <div class="custom-file">
-        <input type="file" class="custom-file-input" id="customFile" name="pictureUpload">
-        <label class="custom-file-label" for="customFile">Choisissez une image</label>
+
+        <input type="file" class="custom-file-input" id="customFile" name="uploadedPicture">
+        <label class="custom-file-label" for="customFile">Choisissez votre image</label>
     </div>
-    <div class="form-group">
-    <label for="tagsImage">Taggez votre image</label>
-    <input type="text" class="form-control" id="tagsImage">
+    <div class="form-group mt-5">
+        <label for="filename">Choisissez un titre...</label>
+        <input type="text" class="form-control" name="filename" id="filename" />
+        
+    </div>
+    <div class="form-group mt-5">
+    <label for="tagsImage">et taggez votre image</label>
+        <input type="text"  data-role="tagsinput" name ="tags" id="tagsImages" placeholder="#tags"/>
   </div>
   <button type="submit" class="btn btn-primary">Uploader</button>
 </form>
-
+        <?php if(isset($_SESSION['messageRetour'])) { echo $_SESSION['messageRetour'];} ?>
 </main>
-<script
-			  src="https://code.jquery.com/jquery-3.4.1.js"
-			  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-			  crossorigin="anonymous"></script>
 <script>
-
-    $('.fa-thumbs-up').on('click',function(){
-        if ($(this).hasClass("text-success")){
-            $(this).removeClass("text-success");
-        }else{
-            $(this).addClass("text-success");   
-            $(this).siblings().removeClass("text-danger")}
-        
-        $.ajax({
-        url: "action.php",
-        type: "POST",
-        data:"",
-        success:function(response){}}) 
-    });   
-            
-    $('.fa-thumbs-down').on('click',function(){
-        if ($(this).hasClass("text-danger")){
-            $(this).removeClass("text-danger");
-        }else{
-            $(this).addClass("text-danger");   
-            $(this).siblings().removeClass("text-success");}
-            
-    var data = $(resultats).serializeArray();
-    $.ajax({
-        url: "action.php",
-        type: "POST",
-        data:$(this),
-        success:function(response){}})});
-        
+    $('#customFile').change(function(event){
+        var fileName = event.target.files[0].name;
+        if (event.target.nextElementSibling!=null){
+            event.target.nextElementSibling.innerText=fileName;
+        }
+    });
 </script>

@@ -46,6 +46,50 @@ class ControllerPicture
        $vue->generer(array("messageRetour" =>$messageRetour));
     }
 
+    public function UploadAnonymous($filename,$tags, $uploadedPicture)
+    {
+        $_SESSION['messageRetour'] = "";
+        if(isset($filename, $tags, $uploadedPicture))
+        {
+            $filename=trim(htmlspecialchars($filename));
+            $tags==trim(htmlspecialchars($tags));
+
+            $PictureVerification = new PictureVerification();
+            $pictureUploaded = $PictureVerification->TraiterPicture($uploadedPicture);
+            if ($pictureUploaded === "Fichier trop lourd !")
+            {
+
+                $_SESSION['messageRetour'] = "fichier trop lourd";
+            }
+            else if($pictureUploaded === false) {
+                $_SESSION['messageRetour'] = "Erreur sur la taille du fichier, veuillez choisir une autre image, PHP.ini c'est vraiment de la ****";
+            }
+            else if($pictureUploaded === "fichier nom compatible")
+            {
+                $_SESSION['messageRetour']= "Format d'image non pris en charge !";
+            }
+            else
+            {
+                
+                $urlImage = $this->creerUrl();
+                $array = array("filename" => $filename, "status" => "private", "link" => $pictureUploaded, "tags" =>$tags, "urlAnonymous" => $urlImage );
+                $picture = new Picture();
+                $picture->hydrate($array);
+                $pictureManager = new PictureManager();
+                $pictureManager->add($picture);
+                $vue = new View("LienAnonymous");
+                $messageRetour = $urlImage;
+                $vue->generer(array("messageRetour" =>$messageRetour));
+                exit();
+            }
+            
+        }
+        else {
+            $_SESSION['messageRetour'] = "veuillez renseigner tous les champs...";
+        }
+        header("Location: index.php");
+    }
+
     public function renderPageUpload()
     {
         $vue = new View("Uploader");
@@ -127,4 +171,44 @@ class ControllerPicture
             }
         }
     }
+
+    public function showPictureAnonymous($urlPicture)
+    {
+        if($urlPicture === false)
+        {
+            $vue = new View("Error");
+            $vue->generer(array('messageErreur' => "Etes vous sûr d'avoir entrer la bonne adresse pour l'image ???"));
+        }
+        else {
+            $picture = new PictureManager();
+            $picture = $picture->getAnonymousPicture($urlPicture);
+            
+            if($picture !== false)
+            {
+                $vue = new View("PictureAnonymous");
+                $vue->genererAnonymous(array("picture" => $picture));
+            }
+            else {
+                $vue = new View("Error");
+                $vue->generer(array('messageErreur' => "Etes vous sûr d'avoir entrer la bonne adresse pour l'image ???"));
+            }
+        }
+    }
+    private function creerUrl()
+        {
+            $caracteres = [
+            '012345678901234567890123456',
+            'azertyuiopmlkjhgfdsqwxcvbn',
+            'AQWZSXEDCRFVTGBYHNUJIKOLPM'
+            ];
+            $mot ="";
+            $length = rand(30,60);
+            for($i = 0 ; $i < $length ; $i++)
+            {
+                $mot.=$caracteres[rand(0,2)][rand(0,25)]; 
+            }
+            $mot = trim($mot);
+            $mot = str_shuffle($mot);
+            return $mot;
+        }
 }

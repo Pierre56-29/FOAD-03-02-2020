@@ -17,6 +17,11 @@ class View
         echo $vue;
     }
 
+    public function genererAnonymous($data = [])
+    {
+        $contenu = $this->genererFichier($this->fichier, $data);
+        echo $contenu;
+    }
     private function genererFichier($fichier, $data)
     {
         if(file_exists($fichier))

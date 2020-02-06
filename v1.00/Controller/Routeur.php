@@ -54,8 +54,8 @@
                         else {
                             $this->ctrlPicture->deletePicture(0);
                         }
-             
-               }
+                    break;    
+                }
             }
             else if(isset($_GET['action']))
             {
@@ -82,6 +82,24 @@
                     $this->ctrlUser=new ControllerUser();
                     $this->ctrlUser->connexion($_POST['login'],$_POST['password']);
                    break;
+
+                   case "UploadAnonymous" :
+                    $this->ctrlPicture = new ControllerPicture();
+                    $this->ctrlPicture->UploadAnonymous($_POST['filename'], $_POST['tags'],$_FILES['uploadedPicture']);
+                }
+            }
+            else if(isset($_GET['MyPicture'])) 
+            {
+                if($_GET['MyPicture'] === "Anonymous")
+                {
+                    $this->ctrlPicture = new ControllerPicture();
+                    if(isset($_GET['Picture']))
+                    {
+                        $this->ctrlPicture->showPictureAnonymous($_GET['Picture']);
+                    }
+                    else {
+                        $this->ctrlPicture->showPictureAnonymous(false);
+                    }
                 }
             }
             else
