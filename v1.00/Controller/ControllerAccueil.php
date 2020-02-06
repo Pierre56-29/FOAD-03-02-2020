@@ -67,6 +67,7 @@ class ControllerAccueil
 
             $resultat[] = array("picture" => $picture,"CommentCount" => $comment, "VoteLike" => $voteLike,  "VoteDislike" => $voteDislike,"login" => $user->getLogin(),"idpicture" => $pictureid);
         }
+        echo json_encode($resultat);
         $vue = new View("AccueilNonInscrit");
         $vue->generer(array("resultat" => $resultat));
     }
