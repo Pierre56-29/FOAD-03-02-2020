@@ -59,16 +59,16 @@ class PictureManager extends Modele
 
     public function delete($idPicture)
     {
-        $req='DELETE * from pictures WHERE idPicture = ?';
-        $res = $this->executeReq($req,$idPicture);
+        $req='DELETE from picture WHERE idPicture = ?';
+        $res = $this->executeReq($req,array($idPicture));
 
-        return "Supprimé avec succès";
+        return true;
     }
 
     public function changeStatus($idPicture)
     {
         $req="UPDATE picture SET status=?";
-        $res = $this->executeReq($req,$idPicture);
+        $res = $this->executeReq($req,array($idPicture));
 
         return " Modifié avec succès";
     }
@@ -85,6 +85,22 @@ class PictureManager extends Modele
     public function getPublicPicture($idPicture)
     {
         $req = "SELECT * from picture WHERE status='public' AND idPicture=?";
+        $res = $this->executeReq($req,array($idPicture));
+        $res = $res->fetch(PDO::FETCH_ASSOC);
+        if($res !== false)
+        {
+            $picture = new Picture();
+            $picture->hydrate($res);
+            return $picture;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public function getPicture($idPicture)
+    {
+        $req = "SELECT * from picture WHERE idPicture=?";
         $res = $this->executeReq($req,array($idPicture));
         $res = $res->fetch(PDO::FETCH_ASSOC);
         if($res !== false)

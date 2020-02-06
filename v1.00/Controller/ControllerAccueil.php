@@ -71,7 +71,7 @@ class ControllerAccueil
         $vue->generer(array("resultat" => $resultat));
     }
 
-    public function renderDashboard($indexPage = 1)
+    public function renderDashboard($indexPage)
     {
         if (isset($indexPage)) 
         {
@@ -81,8 +81,7 @@ class ControllerAccueil
         $dashboard = new PictureManager();
         $dashboard = $dashboard->getPicturesDashboard($_SESSION['idUser']); // $dashboard contient toutes les images du user
         $picturesCount = count($dashboard); // je compte le nombre d'images
-        $nbPages = ceil(($picturesCount['pictureCount'])/8); // j'en déduis le nombre de pages possibles
-
+        $nbPages = ceil(($picturesCount)/8); // j'en déduis le nombre de pages possibles
         if($indexPage < 2) // si page 1, on prend les 8 premières pictures, sinon en fonction de la page.
         {
             $pictures = array_slice($dashboard, 0, 8);
@@ -90,9 +89,9 @@ class ControllerAccueil
         else {
             $pictures = array_slice($dashboard,$indexPictures,8);
         }
-        
+
         $vue = new View("Dashboard");
-        $vue->generer(array("nbPages" => $nbPages, "resultat" => $dashboard, "indexPage" => $indexPage));
+        $vue->generer(array("nbPages" => $nbPages, "resultat" => $pictures, "indexPage" => $indexPage));
         
     }
 

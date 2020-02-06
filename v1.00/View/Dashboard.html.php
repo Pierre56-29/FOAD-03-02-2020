@@ -13,6 +13,7 @@
                     <img class="img-fluid border border-primary rounded mt-2 mb-2" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
                     <input type="checkbox" data-toggle="toggle" data-on="Publique" data-onstyle="primary" data-off="Privé" data-offstyle="default border" class="custom-control-input" 
                     <?php if( $picture->getstatus() =="public") { echo 'checked'; } ?>>
+                    <a href="index.php?action=DeletePicture&Picture=<?php echo $picture->getIdPicture(); ?>"> <button class="btn btn-danger">Supprimer</button></a>
                 </div>
                 <p><?php $tags = $picture->getTags();
                          $tags = explode(",",$tags);
@@ -38,12 +39,12 @@
         <?php
             if($indexPage > 1)
             { ?>
-                <li class="page-item"><a class="page-link" href="index.php?indexPage=<?php echo ($indexPage-1); ?>">Précédent</a></li>
+                <li class="page-item"><a class="page-link" href="index.php?action=PageDashboard&indexPage=<?php echo ($indexPage-1); ?>">Précédent</a></li>
             <?php }
             for($i = 0; $i < 3 ; $i ++)
             {
                 ?>  
-                <li class="page-item"><a class="page-link" href="index.php?indexPage=<?php echo ($indexPage+$i); ?>"><?php echo ($indexPage+$i); ?></a></li>
+                <li class="page-item"><a class="page-link" href="index.php?action=PageDashboard&indexPage=<?php echo ($indexPage+$i); ?>"><?php echo ($indexPage+$i); ?></a></li>
             <?php
             if($indexPage+$i >= $nbPages)
             {
@@ -52,7 +53,7 @@
             }
             if($indexPage < $nbPages)
             { ?>
-                <li class="page-item"><a class="page-link" href="index.php?indexPage=<?php echo ($indexPage+1); ?>">Suivant</a></li>
+                <li class="page-item"><a class="page-link" href="index.php?action=PageDashboard&indexPage=<?php echo ($indexPage+1); ?>">Suivant</a></li>
            <?php }
         } ?>
         </ul>

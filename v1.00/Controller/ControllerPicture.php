@@ -4,7 +4,6 @@ class ControllerPicture
 {
     public function uploaderPicture($filename, $status, $tags, $uploadedPicture)
     {
-
         if(isset($filename, $status, $tags, $uploadedPicture))
         {
             $filename=trim(htmlspecialchars($filename));
@@ -93,5 +92,38 @@ class ControllerPicture
             $vue->generer(array('messageErreur' => "Vous ne pouvez pas accéder à cette image !"));
         }
 
+    }
+
+    public function deletePicture($idPicture)
+    {
+        $idPicture = intval($idPicture);
+        if($idPicture < 1)
+        {
+            $vue = new View("Error");
+            $vue->generer(array('messageErreur' => "Cette image n'existe pas ou vous n'avez pas les droits petit chenapan!"));
+        }
+        else {
+            $picture = new PictureManager();
+            $picture = $picture->getPicture($idPicture);
+
+            if ($picture === false || $picture->getIdUser() !== $_SESSION['idUser'])
+            {
+                $vue = new View("Error");
+                $vue->generer(array('messageErreur' => "Cette image n'existe pas ou vous n'avez pas les droits petit chenapan!"));
+            }
+            else if( $picture->getIdUser() == $_SESSION['idUser'])
+            {
+                $pictureDelete = new PictureManager();
+                $pictureDelete = $pictureDelete->delete($idPicture);
+                if($pictureDelete === true)
+                {
+                    header("Location: index.php?action=PageDashboard");
+                }
+                else {
+                    $vue = new View("Error");
+                    $vue->generer(array('messageErreur' => "Une erreur est seurvenue, recommencez plus tard !"));
+                }
+            }
+        }
     }
 }
