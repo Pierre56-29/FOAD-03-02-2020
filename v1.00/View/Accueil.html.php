@@ -78,35 +78,61 @@
         
         if ($(this).hasClass("text-success")){
             $(this).removeClass("text-success");
-
+            $.ajax({
+                url:"index.php",
+                type: "POST",
+                data: "ajax=Unlike"+"&idPicture="+idPicture,
+                success:function(){
+                },
+                error:function(){
+                }
+            }) 
         }else{
             $(this).addClass("text-success");   
             $(this).siblings().removeClass("text-danger");
-
             $.ajax({
                 url:"index.php",
                 type: "POST",
                 data: "ajax=Like"+"&idPicture="+idPicture,
                 success:function(){
-                    console.log("done");
                 },
                 error:function(){
-                    console.log("done");
                 }
             })
-            
-        }
+        }    
     });
-
-        
- 
-            
+         
     $('.fa-thumbs-down').on('click',function(){
+        var idPicture = $(this).attr('id');
+        idPicture = idPicture.slice(7)
+        console.log(idPicture);
+
+        idPicture = encodeURIComponent(idPicture);
+
+
         if ($(this).hasClass("text-danger")){
             $(this).removeClass("text-danger");
+            $.ajax({
+                url:"index.php",
+                type: "POST",
+                data: "ajax=Undislike"+"&idPicture="+idPicture,
+                success:function(){
+                },
+                error:function(){
+                }
+            }) 
         }else{
             $(this).addClass("text-danger");   
-            $(this).siblings().removeClass("text-success");}})
+            $(this).siblings().removeClass("text-success")
+            $.ajax({
+                url:"index.php",
+                type: "POST",
+                data: "ajax=Dislike"+"&idPicture="+idPicture,
+                success:function(){
+                },
+                error:function(){
+                }
+            })}})
 
     
     
