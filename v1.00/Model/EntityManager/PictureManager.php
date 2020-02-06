@@ -68,12 +68,12 @@ class PictureManager extends Modele
         return true;
     }
 
-    public function changeStatus($idPicture)
+    public function changeStatusPicture($idPicture, $status)
     {
-        $req="UPDATE picture SET status=?";
-        $res = $this->executeReq($req,array($idPicture));
+        $req="UPDATE picture SET status=? WHERE idPicture = ?";
+        $res = $this->executeReq($req,array($status,$idPicture));
 
-        return " Modifié avec succès";
+        return true;
     }
 
     public function getCountPublicPictures()
