@@ -79,9 +79,9 @@
             $(this).siblings().removeClass("text-danger");
 
             $.ajax({
-                url:"Controller/RouteurLikeDislike.php",
+                url:"index.php",
                 type: "POST",
-                data: "action=Like"+"&idPicture="+idPicture,
+                data: "actionlike=Like"+"&idPicture="+idPicture,
                 success:function(){
                     console.log("done");
                 },

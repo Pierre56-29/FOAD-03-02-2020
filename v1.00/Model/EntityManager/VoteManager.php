@@ -21,8 +21,10 @@ class VoteManager extends Modele
     
     public function likePicture($idpicture, $iduser)
     {
-        $req = 'INSERT FROM vote(score,idUser,idPicture) VALUES (score=1,idUser=?, idPicture=?)';
-        $req = $this->executeReq($req,array($idpicture, $iduser));
+        $idpicture=intval($idpicture);
+        
+        $req = 'INSERT INTO vote(score,idUser,idPicture) VALUES (score=1,idUser=?, idPicture=?)';
+        $req = $this->executeReq($req,array( $iduser, $idpicture,));
     }
 
     public function unlike()

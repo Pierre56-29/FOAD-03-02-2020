@@ -3,8 +3,17 @@ session_start();
 require 'AutoLoader.php';
 AutoLoader::register();
 
-$routeur = new Routeur();
-$routeur->router();
+if (isset($_POST['actionlike'])){
+    $routeur = new RouteurLikeDislike();
+    $routeur->router();
+    
+}else{
+    $routeur = new Routeur();
+    $routeur->router();
+}
+
+
+
 
 
 

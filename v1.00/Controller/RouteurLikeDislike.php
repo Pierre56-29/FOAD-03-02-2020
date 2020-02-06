@@ -1,30 +1,26 @@
 <?php
 
-session_start();  
-require '../AutoLoader.php';
-AutoLoader::register();
+class RouteurLikeDislike{
 
+    private $ctrlVote;
 
-if (isset($_POST['idPicture']) && isset($_SESSION['idUser'])){
-       
-    switch ($_POST['action']){
-
-        case"Like":
-            $this->ctrlVote = new ControllerVote();
-            $this->ctrlVote->likePicture($idPicture,$idVoter);
-            echo "success";
-        break;
-        case"Dislike":
-
-        break;
-
+    public function router()
+    {
+        if (isset($_SESSION['idUser']) && isset($_POST['idPicture'])){
+            
+            switch ($_POST['actionlike']){
+                
+                
+                case "Like":
+                    $this->ctrlVote = new ControllerVote;
+                    $this->ctrlVote->likePicture($_POST['idPicture'],$_SESSION['idUser']);
+                break;
+            }
+        }
     }
 
-
-
-
-
-
-
-
 }
+
+
+
+
