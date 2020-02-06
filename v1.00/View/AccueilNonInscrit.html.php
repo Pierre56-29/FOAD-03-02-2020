@@ -10,11 +10,7 @@
     <?php forEach($resultat as $picture)
     {
         ?>
-<<<<<<< HEAD
             <div class="carte card border-primary p-1 m-2">
-=======
-            <div class="card border-primary p-1 mb-2 col-md-6 col-lg-3">
->>>>>>> de09bcc880a4c05c5ac7f207e8502e562f8732dc
                 <div class="d-flex align-items-center text-white bg-primary pl-1 rounded">
                     <i class="fas fa-user"></i>
                     <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture["login"] ?></p>
