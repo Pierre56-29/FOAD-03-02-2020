@@ -1,6 +1,6 @@
 <?php
 
-class RouteurLikeDislike{
+class RouteurAjax{
 
     private $ctrlVote;
 
@@ -8,12 +8,12 @@ class RouteurLikeDislike{
     {
         if (isset($_SESSION['idUser']) && isset($_POST['idPicture'])){
             
-            switch ($_POST['actionlike']){
-                
+            switch ($_POST['ajax']){
                 
                 case "Like":
                     $this->ctrlVote = new ControllerVote;
                     $this->ctrlVote->likePicture($_POST['idPicture'],$_SESSION['idUser']);
+                    
                 break;
             }
         }

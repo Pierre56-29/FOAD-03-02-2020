@@ -86,7 +86,7 @@
             $.ajax({
                 url:"index.php",
                 type: "POST",
-                data: "actionlike=Like"+"&idPicture="+idPicture,
+                data: "ajax=Like"+"&idPicture="+idPicture,
                 success:function(){
                     console.log("done");
                 },

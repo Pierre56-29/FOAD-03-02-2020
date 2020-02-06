@@ -22,13 +22,24 @@ class VoteManager extends Modele
     public function likePicture($idpicture, $iduser)
     {
         $idpicture=intval($idpicture);
+        $iduser=intval($iduser);
         
-        $req = 'INSERT INTO vote(score,idUser,idPicture) VALUES (score=1,idUser=?, idPicture=?)';
-        $req = $this->executeReq($req,array( $iduser, $idpicture,));
+        // $req1 = 'SELECT score, idUser, idPicture FROM vote WHERE idPicture=? AND idUser=?';
+
+
+        $req = 'INSERT INTO vote(score,idUser,idPicture) VALUES (1,?,?)';
+       
+        $req = $this->executeReq($req,array($iduser, $idpicture ));    
     }
 
-    public function unlike()
+    public function dislikePicture($idpicture, $iduser)
     {
+        $idpicture=intval($idpicture);
+        $iduser=intval($iduser);
 
+        $req = 'DELETE FROM vote(score,idUser,idPicture) VALUES (1,'.$iduser.', '.$iduser.')';
+       
+        $req = $this->executeReq($req); 
+        
     }
 }
