@@ -38,7 +38,13 @@
                             }  
                     ?>
                 </p>
-                <p class="commentaire border rounded"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
+                <p class="commentaire border rounded">
+                    <?php 
+                        if ($picture['CommentCount']["COUNT(idComment)"] > 1) {echo $picture['CommentCount']["COUNT(idComment)"] . " commentaires";}
+                        else if($picture['CommentCount']["COUNT(idComment)"] == 1) { echo  "1 commentaire";} 
+                        else {echo "Pas encore de commentaires !";} 
+                    ?>
+                </p>  
             </div>   
     <?php } ?>
     </div>
