@@ -14,8 +14,8 @@
         ?>
             <div class="carte card border-primary p-1 m-2">
                 <div class="d-flex align-items-center text-white bg-primary pl-1 rounded">
-                    <i class="fas fa-user" data-toggle="tooltip" data-placement="top" title="<?php echo $picture['login'];?>"></i>
-                    <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture["login"] ?></p>
+                    <i class="fas fa-user"></i>
+                    <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture['picture']->getFileName(); ?></p>
                 </div>
                 <div class="photo border border-primary rounded mt-2">
                     <a href="index.php?action=PagePicture&Picture=<?php echo $picture['picture']->getIdPicture(); ?>">
@@ -23,8 +23,8 @@
                     </a>
                 </div>
                 <div>
-                    <i class="fas fa-thumbs-up" id="like<?php echo $picture['picture']->getIdPicture(); ?>"><?php echo $picture['VoteLike'];?></i>
-                    <i class="fas fa-thumbs-down" id="dislike<?php echo $picture['picture']->getIdPicture(); ?>"><?php echo $picture['VoteDislike'];?></i>
+                    <i class="fas fa-thumbs-up" id="like<?php echo $picture['picture']->getIdPicture(); ?>"><span id="spanlike<?php echo $picture['picture']->getIdPicture() ?>"><?php echo $picture['VoteLike'];?></i>
+                    <i class="fas fa-thumbs-down" id="dislike<?php echo $picture['picture']->getIdPicture(); ?>"><span id="spandislike<?php echo $picture['picture']->getIdPicture()?>"><?php echo $picture['VoteDislike'];?></i>
                 </div>
                 <p class="commentaire border border-primary rounded mt-2 "><?php $tags = $picture["picture"]->getTags();
                          if(strlen($tags) > 25)
@@ -40,7 +40,13 @@
                             }  
                     ?>
                 </p>
-                <p class="commentaire border rounded"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
+                <p class="commentaire border rounded">
+                    <?php 
+                        if ($picture['CommentCount']["COUNT(idComment)"] > 1) {echo $picture['CommentCount']["COUNT(idComment)"] . " commentaires";}
+                        else if($picture['CommentCount']["COUNT(idComment)"] == 1) { echo  "1 commentaire";} 
+                        else {echo "Pas encore de commentaires !";} 
+                    ?>
+                </p> 
             </div>   
     <?php } ?>
     </div>
@@ -97,9 +103,8 @@
                     dataType:'JSON',
                     data: "ajax=Unlike"+"&idPicture="+idPicture,
                     success:function(data){
-                        console.log(data)
-                        console.log(idPicture)
-                        $('#debug').text(data)
+                        
+                                                
                         $('#spanlike'+idPicture).text(data.like)
                         $('#spandislike'+idPicture).text(data.dislike)
                     },
@@ -112,12 +117,11 @@
                 $.ajax({
                     url:"index.php",
                     type: "POST",
+                    dataType:'JSON',
                     data: "ajax=Like"+"&idPicture="+idPicture,
                     success:function(data){
-                        console.log(data.like)
-                        $('#debug').text(data)
-                        $('#spanlike'+idPicture).text(data["like"])
-
+                        
+                        $('#spanlike'+idPicture).text(data.like)
                         $('#spandislike'+idPicture).text(data.dislike)
                     },
                     error:function(){
@@ -130,7 +134,7 @@
             var idPicture = $(this).attr('id');
             idPicture = idPicture.slice(7)
             console.log(idPicture);
-
+           
             idPicture = encodeURIComponent(idPicture);
 
 
@@ -139,9 +143,13 @@
                 $.ajax({
                     url:"index.php",
                     type: "POST",
+                    dataType:'JSON',
                     data: "ajax=Undislike"+"&idPicture="+idPicture,
                     success:function(data){
-                        $('#spandislike'+idPicture).text(data)
+                        
+                        
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
                     },
                     error:function(){
                     }
@@ -153,9 +161,12 @@
                 $.ajax({
                     url:"index.php",
                     type: "POST",
+                    dataType:'JSON',
                     data: "ajax=Dislike"+"&idPicture="+idPicture,
                     success:function(data){
-                        $('#spandislike'+idPicture).text(data)
+                        
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
                     },
                     error:function(){
                     }

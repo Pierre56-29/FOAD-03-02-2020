@@ -13,7 +13,7 @@
             <div class="carte card border-primary p-1 m-2">
                 <div class="d-flex align-items-center text-white bg-primary pl-1 rounded">
                     <i class="fas fa-user"></i>
-                    <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture["login"] ?></p>
+                    <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture['picture']->getFileName(); ?></p>
                 </div>
                 
                 <div class="photo border border-primary rounded mt-2">
@@ -38,7 +38,13 @@
                             }  
                     ?>
                 </p>
-                <p class="commentaire border rounded"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
+                <p class="commentaire border rounded">
+                    <?php 
+                        if ($picture['CommentCount']["COUNT(idComment)"] > 1) {echo $picture['CommentCount']["COUNT(idComment)"] . " commentaires";}
+                        else if($picture['CommentCount']["COUNT(idComment)"] == 1) { echo  "1 commentaire";} 
+                        else {echo "Pas encore de commentaires !";} 
+                    ?>
+                </p>  
             </div>   
     <?php } ?>
     </div>

@@ -7,7 +7,7 @@
             <div class="col-md-6 col-lg-3 card m-1 pt-1">
                 <div class="d-flex align-items-center text-white bg-primary rounded pl-1">
                     <i class="fas fa-user"></i>
-                    <p class="mx-auto my-auto"><?php echo $picture["login"] ?></p>
+                    <p class="mx-auto my-auto"><?php echo $picture['picture']['fileName'] ?></p>
                 </div>
                 <div class="border border-primary rounded mt-2 pl-1 pr-1 w-100 h-100 text-center">
                     <a href="index.php?action=PagePicture&Picture=<?php echo $picture['picture']['idPicture']; ?>">
@@ -32,7 +32,13 @@
                             }  
                     ?>
                 </p>
-                <p class="border rounded"><?php if ($picture['CommentCount']["COUNT(idComment)"] > 0) {echo $picture['CommentCount']["COUNT(idComment)"] . "commentaires";} else {echo "Pas encore de commentaires !";} ?></p> 
+                <p class="commentaire border rounded">
+                    <?php 
+                        if ($picture['CommentCount']["COUNT(idComment)"] > 1) {echo $picture['CommentCount']["COUNT(idComment)"] . " commentaires";}
+                        else if($picture['CommentCount']["COUNT(idComment)"] == 1) { echo  "1 commentaire";} 
+                        else {echo "Pas encore de commentaires !";} 
+                    ?>
+                </p> 
             </div>   
     <?php } ?>
     </div>

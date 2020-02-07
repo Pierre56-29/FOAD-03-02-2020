@@ -45,7 +45,7 @@ class VoteManager extends Modele
             $req = $this->executeReq($req,array($iduser, $idpicture ));
         }
       
-        echo json_encode(array('like'=>$this->getVoteLike($idpicture),'dislike'=>$this->getVoteDislike($idpicture),$idpicture));
+        echo json_encode(array('like'=>$this->getVoteLike($idpicture),'dislike'=>$this->getVoteDislike($idpicture)));
     }
 
     public function unlikePicture($idpicture, $iduser)
@@ -56,7 +56,7 @@ class VoteManager extends Modele
         $req = 'UPDATE vote SET score=0 WHERE idUser=? AND idPicture=?';
         $req = $this->executeReq($req,array($iduser, $idpicture)); 
     
-        echo json_encode(array('like'=>$this->getVoteLike($idpicture),'dislike'=>$this->getVoteDislike($idpicture),$idpicture));
+        echo json_encode(array('like'=>$this->getVoteLike($idpicture),'dislike'=>$this->getVoteDislike($idpicture)));
     }
 
 
@@ -79,7 +79,7 @@ class VoteManager extends Modele
            $req = 'INSERT INTO vote(score,idUser,idPicture) VALUES (-1,?,?)';
             $req = $this->executeReq($req,array($iduser, $idpicture ));
         }
-     
+        echo json_encode(array('like'=>$this->getVoteLike($idpicture),'dislike'=>$this->getVoteDislike($idpicture)));
     }
 
     public function undislikePicture($idpicture, $iduser)
@@ -89,6 +89,6 @@ class VoteManager extends Modele
 
         $req = 'UPDATE vote SET score=0 WHERE idUser=? AND idPicture=?';
         $req = $this->executeReq($req,array($iduser, $idpicture)); 
-           
+        echo json_encode(array('like'=>$this->getVoteLike($idpicture),'dislike'=>$this->getVoteDislike($idpicture)));   
     }
 }
