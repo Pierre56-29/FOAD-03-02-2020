@@ -31,6 +31,12 @@ class RouteurAjax{
                     $this->ctrlVote = new ControllerVote;
                     $this->ctrlVote->undislikePicture($_POST['idPicture']);
                 break;
+                
+                case "LikeLoading":
+                    $this->ctrlVote = new ControllerVote;
+                    $this->ctrlVote->loadLikesAndDislikes();
+                break;
+
                 case"SwitchStatusPicture":
                     $this->ctrlPicture = new ControllerPicture();
                     $this->ctrlPicture->SwitchStatusPicture($_POST['idPicture'], $_POST['status']);

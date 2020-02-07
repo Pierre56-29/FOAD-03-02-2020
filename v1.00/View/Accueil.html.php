@@ -91,12 +91,10 @@
                     url:"index.php",
                     type: "POST",
                     dataType:'JSON',
-                    data: "ajax=likeLoading"+"&idPicture="+idPicture,
+                    data: "ajax=LikeLoading",
                     success:function(data){
-                        
-                                                
-                        $('#spanlike'+idPicture).text(data.like)
-                        $('#spandislike'+idPicture).text(data.dislike)
+                                                                       
+                        $('#debug').html(data)
                     },
                     error:function(){
                     }

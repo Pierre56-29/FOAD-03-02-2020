@@ -91,4 +91,14 @@ class VoteManager extends Modele
         $req = $this->executeReq($req,array($iduser, $idpicture)); 
         echo json_encode(array('like'=>$this->getVoteLike($idpicture),'dislike'=>$this->getVoteDislike($idpicture)));   
     }
+
+    public function loadLikesAndDislikes($iduser)
+    {
+        $req = 'SELECT score, idPicture FROM vote WHERE idUser=?';
+        $req = $this->executeReq($req,array($iduser));
+        var_dump($req);
+        die();
+        echo json_encode(array($req));   
+           
+    }
 }
