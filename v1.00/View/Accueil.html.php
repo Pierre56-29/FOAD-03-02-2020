@@ -87,6 +87,23 @@
 <script>
     
     $( document ).ready(function() { 
+        $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=likeLoading"+"&idPicture="+idPicture,
+                    success:function(data){
+                        
+                                                
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
+                    },
+                    error:function(){
+                    }
+                }) 
+
+
+
         $('.fa-thumbs-up').on('click',function(){
 
             var idPicture = $(this).attr('id');
