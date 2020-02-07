@@ -23,8 +23,8 @@
                     </a>
                 </div>
                 <div>
-                    <i class="fas fa-thumbs-up" id="like<?php echo $picture['picture']->getIdPicture(); ?>"><?php echo $picture['VoteLike'];?></i>
-                    <i class="fas fa-thumbs-down" id="dislike<?php echo $picture['picture']->getIdPicture(); ?>"><?php echo $picture['VoteDislike'];?></i>
+                    <i class="fas fa-thumbs-up" id="like<?php echo $picture['picture']->getIdPicture(); ?>"><span id="spanlike<?php echo $picture['picture']->getIdPicture() ?>"><?php echo $picture['VoteLike'];?></i>
+                    <i class="fas fa-thumbs-down" id="dislike<?php echo $picture['picture']->getIdPicture(); ?>"><span id="spandislike<?php echo $picture['picture']->getIdPicture()?>"><?php echo $picture['VoteDislike'];?></i>
                 </div>
                 <p class="commentaire border border-primary rounded mt-2 "><?php $tags = $picture["picture"]->getTags();
                          if(strlen($tags) > 25)
@@ -97,9 +97,8 @@
                     dataType:'JSON',
                     data: "ajax=Unlike"+"&idPicture="+idPicture,
                     success:function(data){
-                        console.log(data)
-                        console.log(idPicture)
-                        $('#debug').text(data)
+                        
+                                                
                         $('#spanlike'+idPicture).text(data.like)
                         $('#spandislike'+idPicture).text(data.dislike)
                     },
@@ -112,12 +111,11 @@
                 $.ajax({
                     url:"index.php",
                     type: "POST",
+                    dataType:'JSON',
                     data: "ajax=Like"+"&idPicture="+idPicture,
                     success:function(data){
-                        console.log(data.like)
-                        $('#debug').text(data)
-                        $('#spanlike'+idPicture).text(data["like"])
-
+                        
+                        $('#spanlike'+idPicture).text(data.like)
                         $('#spandislike'+idPicture).text(data.dislike)
                     },
                     error:function(){
@@ -130,7 +128,7 @@
             var idPicture = $(this).attr('id');
             idPicture = idPicture.slice(7)
             console.log(idPicture);
-
+           
             idPicture = encodeURIComponent(idPicture);
 
 
@@ -139,9 +137,13 @@
                 $.ajax({
                     url:"index.php",
                     type: "POST",
+                    dataType:'JSON',
                     data: "ajax=Undislike"+"&idPicture="+idPicture,
                     success:function(data){
-                        $('#spandislike'+idPicture).text(data)
+                        
+                        
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
                     },
                     error:function(){
                     }
@@ -153,9 +155,12 @@
                 $.ajax({
                     url:"index.php",
                     type: "POST",
+                    dataType:'JSON',
                     data: "ajax=Dislike"+"&idPicture="+idPicture,
                     success:function(data){
-                        $('#spandislike'+idPicture).text(data)
+                        
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
                     },
                     error:function(){
                     }
