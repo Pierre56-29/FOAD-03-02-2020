@@ -239,8 +239,8 @@ class ControllerPicture
         $_SESSION['search'] = ""; // on enlève l'ancienne recherhce mise en mémoire;
         if($search ==="")
         {
-            $vue = new View("Search");
-            $vue->generer(array("messageRetour" => "Veuillez au moins remplir le champs de recherche..."));
+            $vue = new View("Error");
+            $vue->generer(array("messageErreur" => "Veuillez au moins remplir le champs de recherche..."));
         }
         else
         {
@@ -254,8 +254,8 @@ class ControllerPicture
             
             if(empty($res))
             {
-                $vue = new Vue("Search");
-                $vue->generer(array("messageRetour" => "Pas de résultats pour cette recherche"));
+                $vue = new View("Error");
+                $vue->generer(array("messageErreur" => "Pas de résultats pour cette recherche"));
             }
             else 
             {
@@ -286,6 +286,7 @@ class ControllerPicture
             $picturesSorted =  $_SESSION['search'];
         }
  
+        
         $countPicture = count($picturesSorted);
         $nbPages = ceil(($countPicture/8));
         $indexDebut = $this->donnerIndexPageBdd($indexPage);
@@ -294,7 +295,7 @@ class ControllerPicture
         // on prend que les 8 images ou les dernières pour la page en cours
     
         $pictureRender =[];
-        for ($i = $indexDebut ; $i < $indexFin ; $i++)
+        for ($i = $indexDebut ; $i < $indexFin+$indexDebut ; $i++)
         { 
             $pictureRender[] = $picturesSorted[$i];
         }

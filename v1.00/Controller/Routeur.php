@@ -69,6 +69,16 @@
                             $this->ctrlPicture->search("");
                         }
                     break;
+                    case"SuiteSearch":
+                        $this->ctrlPicture = new ControllerPicture();
+                        if(isset($_GET['indexPage']))
+                        {
+                            $this->ctrlPicture->genererSearch($_GET['indexPage'], "");
+                        }
+                        else {
+                            $this->ctrlPicture->genererSearch(1, "");
+                        }
+                    break;
                 }
             }
             else if(isset($_GET['action']))

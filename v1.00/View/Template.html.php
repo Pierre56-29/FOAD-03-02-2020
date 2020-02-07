@@ -31,6 +31,11 @@
           <li class="nav-item">
             <a class="nav-link" href="index.php?action=Deconnexion">Se déconnecter</a>
           </li>
+      </ul>
+    </div>
+    <form class="form-inline" method="POST" action="index.php?action=Search">
+      <input type="text" class="col-xs-4 form-control" placeholder="Search" name="search">
+    </form>
       <?php }
       else { ?>
           <li class="nav-item">
@@ -39,14 +44,9 @@
           <li class="nav-item">
             <a class="nav-link" href="index.php?action=Inscription">S'inscrire</a>
           </li>
-      <?php } ?>    
-      </ul>
-    
-
+        </ul>
     </div>
-    <form class="form-inline" method="POST" action="index.php?action=Search">
-      <input type="text" class="col-xs-4 form-control" placeholder="Search" name="search">
-    </form>
+      <?php } ?>    
     
   </nav>
 <div> <?php echo $content; ?></div>
