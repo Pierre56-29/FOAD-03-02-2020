@@ -8,8 +8,11 @@
 <main class="container mt-4">
     <div id="erreurSwitchStatus"></div>
     <div class="row">
-        <?php forEach($resultat as $picture)
+        <?php 
+            if(!empty($resultat))
             {
+                forEach($resultat as $picture)
+                {
         ?>
             <div class="carte card border-primary p-1 m-2">
             <div class="d-flex align-items-center text-white bg-primary pl-1 rounded">
@@ -51,7 +54,11 @@
                     </p>
             </div> 
             
-        <?php } ?>
+        <?php }
+            }
+                else {
+            echo "<p class='text-center mt-4'> Cliquez sur l'onglet 'Uploader' afin de remplir votre tableau de bord </p>";
+        } ?>
     </div>
 
 

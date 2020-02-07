@@ -72,13 +72,13 @@ class ControllerUser
     public function connexion($login,$password)
     {
         $login =trim(htmlspecialchars($login));
-        //$password = password_hash(trim($password),PASSWORD_DEFAULT);
+        $password = trim(htmlspecialchars($password));
         $array = array("login" => $login, "password" => $password);
 
         $userManager = new UserManager();
         $user = $userManager->connect($login);
-
-        if ($user !== false && $user['password'] === $password)
+        var_dump( $user['password'], $password);
+        if ($user !== false && password_verify($password, $user['password']) === true)
         {
             $_SESSION['login'] = $login;
             $_SESSION['idUser'] = $user['idUser'];

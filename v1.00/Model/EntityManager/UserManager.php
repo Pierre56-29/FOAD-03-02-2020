@@ -75,7 +75,9 @@ class UserManager extends Modele
     {
         $req='SELECT idUser, login, password, email FROM user WHERE login=?';
         $res = $this->executeReq($req,array($user));
+
         $res = $res->fetch(PDO::FETCH_ASSOC);
+
         if($res != FALSE)
         { 
             return $res;
