@@ -33,8 +33,8 @@
           </li>
       </ul>
     </div>
-    <form class="form-inline" method="POST" action="index.php?action=Search">
-      <input type="text" class="col-xs-4 form-control" placeholder="Search" name="search">
+    <form class="form-inline my-2 my-lg-0" method="POST" action="index.php?action=Search">
+      <input type="text" class="col-xs-4 form-control" placeholder="Rechercher" name="search">
     </form>
       <?php }
       else { ?>
