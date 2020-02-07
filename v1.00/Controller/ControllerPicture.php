@@ -167,6 +167,7 @@ class ControllerPicture
             }
             else if( $picture->getIdUser() == $_SESSION['idUser'])
             {
+                unlink($picture->getLink()); // suppression du fichier sur le server
                 $pictureDelete = new PictureManager();
                 $pictureDelete = $pictureDelete->delete($idPicture);
                 if($pictureDelete === true)
