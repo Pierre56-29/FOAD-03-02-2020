@@ -123,6 +123,91 @@ $('.publicPrivateButton').change(function() {
         }
     });
 });
+
+$(document ).ready(function() { 
+        $('.fa-thumbs-up').on('click',function(){
+
+            var idPicture = $(this).attr('id');
+            idPicture = idPicture.slice(4)
+           
+            idPicture = encodeURIComponent(idPicture);
+            
+            if ($(this).hasClass("text-success")){
+                $(this).removeClass("text-success");
+                $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=Unlike"+"&idPicture="+idPicture,
+                    success:function(data){
+                        
+                                                
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
+                    },
+                    error:function(){
+                    }
+                }) 
+            }else{
+                $(this).addClass("text-success");   
+                $(this).siblings().removeClass("text-danger");
+                $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=Like"+"&idPicture="+idPicture,
+                    success:function(data){
+                        
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
+                    },
+                    error:function(){
+                    }
+                })
+            }    
+        });
+            
+        $('.fa-thumbs-down').on('click',function(){
+            var idPicture = $(this).attr('id');
+            idPicture = idPicture.slice(7)
+                       
+            idPicture = encodeURIComponent(idPicture);
+
+
+            if ($(this).hasClass("text-danger")){
+                $(this).removeClass("text-danger");
+                $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=Undislike"+"&idPicture="+idPicture,
+                    success:function(data){
+                        
+                        
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
+                    },
+                    error:function(){
+                    }
+                }) 
+
+            }else{
+                $(this).addClass("text-danger");   
+                $(this).siblings().removeClass("text-success")
+                $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=Dislike"+"&idPicture="+idPicture,
+                    success:function(data){
+                        
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
+                    },
+                    error:function(){
+                    }
+                })}})
+    });
      
 
 </script>

@@ -97,16 +97,18 @@ class VoteManager extends Modele
         $req = 'SELECT score, idPicture FROM vote WHERE idUser=?';
         $req = $this->executeReq($req,array($iduser));
         
-        $result=$req->fetchAll(PDO::FETCH_ASSOC);
+        $results=$req->fetchAll(PDO::FETCH_ASSOC);
         $result_array = [];
-        for($i=0;$i<5;$i++){
-            array_push($result_array,$result[$i]["score"],$result[$i]["idPicture"]);
-
+        foreach($results as $result){
+           
+            array_push($result_array,$result);
+            
 
         } 
-        print_r($result_array);
+        echo json_encode(array($result_array));
+        //print_r($result_array);
         
-        //echo json_encode(array($result));
+        
        
     }
 }
