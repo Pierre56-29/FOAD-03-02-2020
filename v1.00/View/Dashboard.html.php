@@ -3,8 +3,8 @@
 <main class="container mt-4">
     <div id="erreurSwitchStatus"></div>
     <div class="row">
-    <?php forEach($resultat as $picture)
-    {
+        <?php forEach($resultat as $picture)
+            {
         ?>
             <div class="carte card border-primary p-1 m-2">
                 <div>
@@ -41,9 +41,9 @@
                         ?>
                     
                     </p>
-                </div> 
+            </div> 
             
-    <?php } ?>
+        <?php } ?>
     </div>
 
 

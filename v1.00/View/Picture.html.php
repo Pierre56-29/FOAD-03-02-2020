@@ -1,14 +1,14 @@
 <?php// var_dump($comments); die(); ?>
-<main class="container mt-5">
+<main class="container mt-4">
     <div class="row">
         <div class="col-12 card m-1 pt-1">
             <div class="d-flex align-items-center text-white bg-primary rounded pl-1 ">
                 <i class="fas fa-user"></i>
                 <p class="mx-auto my-auto"><?php echo $picture->getFilename(); ?></p>
-                <p class="my-auto pl-1"><?php echo $login ?></p>
+               <!-- <p class="my-auto"><?php echo $login ?></p> -->
             </div>
             <div>
-                <div class="border border-primary rounded mt-2 pl-1 pr-1 w-100 h-100 text-center">
+                <div class="border border-primary rounded mt-2 pl-1 text-center">
                     <img class="img-fluid" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
                 </div>
                 <div>
