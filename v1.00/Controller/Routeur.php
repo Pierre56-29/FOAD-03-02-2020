@@ -112,7 +112,7 @@
                     $this->ctrlPicture->UploadAnonymous($_POST['filename'], $_POST['tags'],$_FILES['uploadedPicture']);
                 }
             }
-            else if(isset($_GET['MyPicture'])) 
+            else if(isset($_GET['MyPicture'])) // le lien pour photo uploader en anonyme
             {
                 if($_GET['MyPicture'] === "Anonymous")
                 {
@@ -147,12 +147,7 @@
             }
        }
     }
-/*
-       private function erreur($msgErreur)
-       {
-           $vue = new Vue('Erreur');
-           $vue->generer(array('messageRetour' => $msgErreur));
-       }*/
+
    
    
 
