@@ -93,8 +93,8 @@
                     dataType:'JSON',
                     data: "ajax=LikeLoading",
                     success:function(data){
-                                                                       
-                        $('#debug').html(data)
+                                                                     
+                        $('#debug').text(data[0][1]["score"])
                     },
                     error:function(){
                     }

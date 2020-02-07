@@ -30,8 +30,7 @@ class ControllerVote
     public function loadLikesAndDislikes(){
         $voteManager = new VoteManager();
         $voteManager=$voteManager->loadLikesAndDislikes($_SESSION['idUser']);
-        var_dump($voteManager);
-        die();
+        
 
     }
 }
