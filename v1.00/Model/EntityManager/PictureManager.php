@@ -152,25 +152,29 @@ class PictureManager extends Modele
 
     public function searchPicture($search)
     {
-        $req = "SELECT * FROM picture WHERE status ='public' AND";
+        $req = "SELECT * FROM picture WHERE status='public' AND (";
         
         forEach($search as $mot)
         {
             $req.=" fileName LIKE '%$mot%' OR tags LIKE '%$mot%' OR ";
         }
         $req = substr($req, 0, -3);
+        $req.=")";  // ne pas oublier parenthèses, sinon bloquera en image publique pour le titre mais pas pour les tags où il ira prendre privé et public
+      
         $res = $this->executeReq($req);
-        
+       
         $pictures = [];
 
         while($donnes =$res->fetch(PDO::FETCH_ASSOC))
         {
+
             $picture = new Picture();
             $picture->hydrate($donnes);
             $pictures[] = $picture;
         }
 
         return $pictures;
+       
     }
 
 }
