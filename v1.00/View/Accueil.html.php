@@ -14,12 +14,12 @@
         ?>
             <div class="carte card border-primary p-1 m-2">
                 <div class="d-flex align-items-center text-white bg-primary pl-1 rounded">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-user" data-toggle="tooltip" data-placement="top" title="<?php echo $picture['login'];?>"></i>
                     <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture['picture']->getFileName(); ?></p>
                 </div>
-                <div class="photo border border-primary rounded mt-2">
-                    <a href="index.php?action=PagePicture&Picture=<?php echo $picture['picture']->getIdPicture(); ?>">
-                        <img class="image img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture"/>
+                <div class="photo border border-primary rounded mt-2 ">
+                    <a class="mx-auto my-auto" href="index.php?action=PagePicture&Picture=<?php echo $picture['picture']->getIdPicture(); ?>">
+                        <img class="image img-fluid" src="<?php echo $picture["picture"]->getLink(); ?>" alt="picture" position="absolute"/>
                     </a>
                 </div>
                 <div>
