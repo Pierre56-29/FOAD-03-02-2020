@@ -35,8 +35,6 @@
         </div>
     </div>
     <div class="container pt-5">
-             <form method = "POST" action="index.php?action=Inscrire">
-               <fieldset>
     
             <?php if($CommentCount > 0)
             {?>
@@ -55,4 +53,18 @@
                 else 
                     {echo "<p> Pas encore de commentaires ! </p>";} ?> 
     </div>
+    <form method="POST" action="index.php?action=Commenter">
+        <h3>Vous voulez partager votre avis ? </h3>
+        <div class="form-group">
+            <label for="title">Titre de votre commentaire</label>
+            <input type="text" name="title" class="form-control" id="title">
+        </div>
+        <div class="form-group">
+            <label for="CommentContnent">Le contenu de votre commentaire</label>
+            <input type="text" class="form-control" name="content" id="CommentContnent">
+        </div>
+        <input type="hidden" name="idPicture" value=<?php echo  $picture->getIdPicture(); ?> />
+        <button type="submit" class="btn btn-primary">Commenter</button>
+        </form>
+        <?php if(isset($messageRetour)) { echo $messageRetour;} ?>
 </main>
