@@ -1,31 +1,39 @@
+<head>
+  <link rel="stylesheet" href="Css/bootstrap.min.css">
+  <link rel="stylesheet" href="Css/style.css">
+  <title>Dashboard</title>
+</head>
 
-
+<body>
 <main class="container mt-4">
     <div id="erreurSwitchStatus"></div>
     <div class="row">
-    <?php forEach($resultat as $picture)
-    {
+        <?php forEach($resultat as $picture)
+            {
         ?>
             <div class="carte card border-primary p-1 m-2">
-                <div>
-                    <h4 class="text-center text-white bg-primary rounded text-white bg-primary rounded pl-1 pt-1 pb-1"><?php echo $picture->getFilename() ?></h4>
+            <div class="d-flex align-items-center text-white bg-primary pl-1 rounded">
+                    <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture->getFilename() ?></p>
                 </div>
-                <div>
+                <div class="photo border border-primary rounded mt-2 ">
                 <?php if($picture->getStatus() === "public")
                     {?>
-                        <a id="link<?php echo $picture->getIdPicture(); ?>" href="index.php?action=PagePicture&Picture=<?php echo $picture->getIdPicture(); ?>">
-                            <img class="img-fluid border border-primary rounded mt-2 mb-2" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
+                        <a id="link<?php echo $picture->getIdPicture(); ?>"href="index.php?action=PagePicture&Picture=<?php echo $picture->getIdPicture(); ?>">
+                            <img class="image img-fluid " src="<?php echo $picture->getLink(); ?>" alt="picture"/>
                         </a>
                     <?php }
                     else { ?>
                         <a id="link<?php echo $picture->getIdPicture(); ?>" href="index.php?action=PagePrivatePicture&Picture=<?php echo $picture->getIdPicture(); ?>">
-                            <img class="img-fluid border border-primary rounded mt-2 mb-2" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
+                            <img class="image img-fluid " src="<?php echo $picture->getLink(); ?>" alt="picture"/>
                         </a>
                     <?php } ?>
+                </div>  
+                <div class="mt-2 mb-3">  
                     <input id="<?php echo $picture->getIdPicture(); ?>"  data-style="slow" data-width="125"type="checkbox" data-toggle="toggle" data-on="Publique" data-onstyle="primary" data-off="Privé" data-offstyle="default border" class="custom-control-input publicPrivateButton" 
                     <?php if( $picture->getstatus() =="public") { echo 'checked'; } ?>>
                     <a href="index.php?action=DeletePicture&Picture=<?php echo $picture->getIdPicture(); ?>"> <button class="btn btn-danger">Supprimer</button></a>
                 </div>
+                
                 <p class="commentaire border border-primary rounded mt-2"><?php $tags = $picture->getTags();
                     if(strlen($tags) > 25)
                     {
@@ -41,9 +49,9 @@
                         ?>
                     
                     </p>
-                </div> 
+            </div> 
             
-    <?php } ?>
+        <?php } ?>
     </div>
 
 
@@ -79,6 +87,7 @@
     <?php }  ?> 
 
 </main>
+</body>
 
 <script>
 
