@@ -1,9 +1,13 @@
+<head>
+  <link rel="stylesheet" href="Css/bootstrap.min.css">
+  <link rel="stylesheet" href="Css/style.css">
+  <title></title>
+</head>
 <?php// var_dump($comments); die(); ?>
 <main class="container mt-4">
     <div class="row">
         <div class="col-12 card m-1 pt-1">
             <div class="d-flex align-items-center text-white bg-primary rounded pl-1 ">
-                <i class="fas fa-user"></i>
                 <p class="mx-auto my-auto"><?php echo $picture->getFilename(); ?></p>
                <!-- <p class="my-auto"><?php echo $login ?></p> -->
             </div>
@@ -28,7 +32,7 @@
                         ?>
                     </p>
                 </div>
-                <div class="font-italic text-right small">
+                <div class="font-italic text-right small col-10">
                     <?php echo $picture->getDateUpload(); ?>
                 </div>
             </div>
@@ -39,11 +43,11 @@
             <?php if($CommentCount > 0)
             {?>
                <legend  class="col-md-6 text-primary">Les commentaires : </legend> 
-               <div class="form group border rounded">
+               <div class="groupe-commentaire form group border rounded">
             <?php
                 forEach($comments as $comment)
                 { ?>
-                    <div class ="col-12 overflow-auto">
+                    <div class ="col-12 overflow-x:scroll">
                         <h5 class="font-weight-bold text text-primary"> <?php echo $comment['comment']->getTitle(); ?> </h5>
                         <p > <?php echo $comment['comment']->getContent(); ?></p>
                         <p class="font-italic text-right small"> Posté par <?php echo $comment['userComment']; ?> le <?php echo $comment['comment']->getDateComment(); ?></p>

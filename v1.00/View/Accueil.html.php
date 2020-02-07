@@ -14,7 +14,7 @@
         ?>
             <div class="carte card border-primary p-1 m-2">
                 <div class="d-flex align-items-center text-white bg-primary pl-1 rounded">
-                    <i class="fas fa-user"></i>
+                    <i class="fas fa-user" data-toggle="tooltip" data-placement="top" title="<?php echo $picture['login'];?>"></i>
                     <p class="mx-auto my-auto pt-1 pb-1"><?php echo $picture["login"] ?></p>
                 </div>
                 <div class="photo border border-primary rounded mt-2">

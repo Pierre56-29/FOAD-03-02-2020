@@ -31,3 +31,9 @@
     margin-left: 1px;
     
 }
+
+.groupe-commentaire{
+    height:150px;
+  overflow-y: scroll;
+}
+}
