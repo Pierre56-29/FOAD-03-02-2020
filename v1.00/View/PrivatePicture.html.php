@@ -8,10 +8,6 @@
                 <div class="border border-primary rounded mt-2 pl-1 text-center">
                     <img class="img-fluid" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
                 </div>
-                <div>
-                    <i class="fas fa-thumbs-up"></i>
-                    <i class="fas fa-thumbs-down"></i>
-                </div>
             </div>
             <div class="row">
                 <div>
@@ -26,7 +22,8 @@
                     </p>
             </div>
             <div class="font-italic text-right small col-10">
-                <?php echo $picture->getDateUpload(); ?>
+            <?php  $datetime = DateTime::createFromFormat("Y-m-d H:i:s", $picture->getDateUpload());
+                    echo "le " . $datetime->format("d/m/Y à H:i:s"); ?>
             </div>
         </div>
     </div>
