@@ -23,11 +23,11 @@
                  </div>
 
                  <div class="form-group col-md-3">
-                 <input type="text"  data-role="tagsinput" name ="tags" placeholder="#tags"/>
+                 <input type="text"  data-role="tagsinput" name ="tags" placeholder="#tags" tabindex="-1" />
                  </div>
                  
                  <div class="form-group col-md-3">
-                 <input type="submit" name = "submit" value = "Uploader mon image">
+                 <input type="submit" name = "submit" value = "Uploader mon image" >
                  </div>
 
                </fieldset>

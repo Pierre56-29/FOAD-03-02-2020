@@ -111,6 +111,10 @@ class ControllerPicture
             $userName = new UserManager(); // le username à qui appartient la photo
             $user = $userName->getUser($picture->getIdUser());
 
+            $voteManager = new VoteManager(); // les likes et dislike de la photo
+            $voteLike = $voteManager->getVoteLike($idPicture);
+            $voteDislike=$voteManager->getVoteDislike($idPicture);
+
             if($commentsCount > 0) // si j'ai des commentaires, je récupère le login de chacun
             {
                 $renderComments =[];
@@ -124,10 +128,10 @@ class ControllerPicture
             
            
                         
-            $resultat= array("picture" => $picture,"CommentCount" => $commentsCount,"login" => $user->getLogin(), "comments" => $renderComments, "messageRetour" => $messageRetour);
+            $resultat= array("picture" => $picture,"CommentCount" => $commentsCount,"login" => $user->getLogin(), "comments" => $renderComments,"VoteLike" => $voteLike,  "VoteDislike" => $voteDislike, "messageRetour" => $messageRetour);
             }
             else {
-                $resultat= array("picture" => $picture,"CommentCount" => $commentsCount,"login" => $user->getLogin(), "messageRetour" => $messageRetour);
+                $resultat= array("picture" => $picture,"CommentCount" => $commentsCount,"login" => $user->getLogin(),"VoteLike" => $voteLike,  "VoteDislike" => $voteDislike, "messageRetour" => $messageRetour);
             }
             $vue = new View("Picture");
             $vue->generer($resultat);

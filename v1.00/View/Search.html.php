@@ -74,78 +74,123 @@
     <?php }  ?>
     
     
-<script>
-    $('.fa-thumbs-up').on('click',function(){
+    <script>
+    
+    $(window).on('load',function() { 
+        $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=LikeLoading",
+                    success:function(data){
 
-        var idPicture = $(this).attr('id');
-        idPicture = idPicture.slice(4)
-        console.log(idPicture);
+                        $.each(data[0],function(key,value){
 
-        idPicture = encodeURIComponent(idPicture);
-        
-        if ($(this).hasClass("text-success")){
-            $(this).removeClass("text-success");
-            $.ajax({
-                url:"index.php",
-                type: "POST",
-                data: "ajax=Unlike"+"&idPicture="+idPicture,
-                success:function(){
-                },
-                error:function(){
-                }
-            }) 
-        }else{
-            $(this).addClass("text-success");   
-            $(this).siblings().removeClass("text-danger");
-            $.ajax({
-                url:"index.php",
-                type: "POST",
-                data: "ajax=Like"+"&idPicture="+idPicture,
-                success:function(){
-                },
-                error:function(){
-                }
-            })
-        }    
+
+                            console.log(value);
+                            console.log(value.score);
+                            console.log(value.idPicture);
+
+                            if(value.score==1){
+                                $("#like"+value.idPicture).addClass("text-success") 
+                            }else if(value.score=="-1"){
+                                $("#dislike"+value.idPicture).addClass("text-danger")
+                            }
+                        
+                        });
+                        
+                       
+                    },
+                    error:function(){
+                    }
+                }) 
+
     });
-         
-    $('.fa-thumbs-down').on('click',function(){
-        var idPicture = $(this).attr('id');
-        idPicture = idPicture.slice(7)
-        console.log(idPicture);
+    $(document ).ready(function() { 
+        $('.fa-thumbs-up').on('click',function(){
 
-        idPicture = encodeURIComponent(idPicture);
+            var idPicture = $(this).attr('id');
+            idPicture = idPicture.slice(4)
+           
+            idPicture = encodeURIComponent(idPicture);
+            
+            if ($(this).hasClass("text-success")){
+                $(this).removeClass("text-success");
+                $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=Unlike"+"&idPicture="+idPicture,
+                    success:function(data){
+                        
+                                                
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
+                    },
+                    error:function(){
+                    }
+                }) 
+            }else{
+                $(this).addClass("text-success");   
+                $(this).siblings().removeClass("text-danger");
+                $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=Like"+"&idPicture="+idPicture,
+                    success:function(data){
+                        
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
+                    },
+                    error:function(){
+                    }
+                })
+            }    
+        });
+            
+        $('.fa-thumbs-down').on('click',function(){
+            var idPicture = $(this).attr('id');
+            idPicture = idPicture.slice(7)
+                       
+            idPicture = encodeURIComponent(idPicture);
 
 
-        if ($(this).hasClass("text-danger")){
-            $(this).removeClass("text-danger");
-            $.ajax({
-                url:"index.php",
-                type: "POST",
-                data: "ajax=Undislike"+"&idPicture="+idPicture,
-                success:function(){
-                },
-                error:function(){
-                }
-            }) 
-        }else{
-            $(this).addClass("text-danger");   
-            $(this).siblings().removeClass("text-success")
-            $.ajax({
-                url:"index.php",
-                type: "POST",
-                data: "ajax=Dislike"+"&idPicture="+idPicture,
-                success:function(){
-                },
-                error:function(){
-                }
-            })}})
+            if ($(this).hasClass("text-danger")){
+                $(this).removeClass("text-danger");
+                $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=Undislike"+"&idPicture="+idPicture,
+                    success:function(data){
+                        
+                        
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
+                    },
+                    error:function(){
+                    }
+                }) 
 
-    
-    
-    
+            }else{
+                $(this).addClass("text-danger");   
+                $(this).siblings().removeClass("text-success")
+                $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=Dislike"+"&idPicture="+idPicture,
+                    success:function(data){
+                        
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
+                    },
+                    error:function(){
+                    }
+                })}})
+    });   
     </script>
-
     
     
      

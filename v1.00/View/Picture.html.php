@@ -15,8 +15,8 @@
                     <img class="img-fluid" src="<?php echo $picture->getLink(); ?>" alt="picture"/>
                 </div>
                 <div>
-                    <i class="fas fa-thumbs-up"></i>
-                    <i class="fas fa-thumbs-down"></i>
+                    <i class="fas fa-thumbs-up" id="like<?php echo $picture->getIdPicture(); ?>"><span id="spanlike<?php echo $picture->getIdPicture() ?>"><?php echo $VoteLike;?></i>
+                    <i class="fas fa-thumbs-down" id="dislike<?php echo $picture->getIdPicture(); ?>"><span id="spandislike<?php echo $picture->getIdPicture() ?>"><?php echo $VoteDislike;?></i>
                 </div>
             </div>
             <div class="row">
@@ -76,3 +76,121 @@
         </form>
         <?php if(isset($messageRetour)) { echo $messageRetour;} ?>
 </main>
+</body>
+<script>
+    
+    $(window).on('load',function() { 
+        $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=LikeLoading",
+                    success:function(data){
+
+                        $.each(data[0],function(key,value){
+
+
+                            console.log(value);
+                            console.log(value.score);
+                            console.log(value.idPicture);
+
+                            if(value.score==1){
+                                $("#like"+value.idPicture).addClass("text-success") 
+                            }else if(value.score=="-1"){
+                                $("#dislike"+value.idPicture).addClass("text-danger")
+                            }
+                        
+                        });
+                        
+                       
+                    },
+                    error:function(){
+                    }
+                }) 
+
+    });
+    $(document ).ready(function() { 
+        $('.fa-thumbs-up').on('click',function(){
+
+            var idPicture = $(this).attr('id');
+            idPicture = idPicture.slice(4)
+           
+            idPicture = encodeURIComponent(idPicture);
+            
+            if ($(this).hasClass("text-success")){
+                $(this).removeClass("text-success");
+                $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=Unlike"+"&idPicture="+idPicture,
+                    success:function(data){
+                        
+                                                
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
+                    },
+                    error:function(){
+                    }
+                }) 
+            }else{
+                $(this).addClass("text-success");   
+                $(this).siblings().removeClass("text-danger");
+                $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=Like"+"&idPicture="+idPicture,
+                    success:function(data){
+                        
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
+                    },
+                    error:function(){
+                    }
+                })
+            }    
+        });
+            
+        $('.fa-thumbs-down').on('click',function(){
+            var idPicture = $(this).attr('id');
+            idPicture = idPicture.slice(7)
+                       
+            idPicture = encodeURIComponent(idPicture);
+
+
+            if ($(this).hasClass("text-danger")){
+                $(this).removeClass("text-danger");
+                $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=Undislike"+"&idPicture="+idPicture,
+                    success:function(data){
+                        
+                        
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
+                    },
+                    error:function(){
+                    }
+                }) 
+
+            }else{
+                $(this).addClass("text-danger");   
+                $(this).siblings().removeClass("text-success")
+                $.ajax({
+                    url:"index.php",
+                    type: "POST",
+                    dataType:'JSON',
+                    data: "ajax=Dislike"+"&idPicture="+idPicture,
+                    success:function(data){
+                        
+                        $('#spanlike'+idPicture).text(data.like)
+                        $('#spandislike'+idPicture).text(data.dislike)
+                    },
+                    error:function(){
+                    }
+                })}})
+    });   
+    </script>
