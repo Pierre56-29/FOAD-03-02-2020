@@ -3,7 +3,6 @@
   <link rel="stylesheet" href="Css/style.css">
   <title></title>
 </head>
-<?php// var_dump($comments); die(); ?>
 <main class="container mt-4">
     <div class="row">
         <div class="col-12 card m-1 pt-1">
@@ -33,7 +32,8 @@
                     </p>
                 </div>
                 <div class="font-italic text-right small col-10">
-                    <?php echo $picture->getDateUpload(); ?>
+                    <?php  $datetime = DateTime::createFromFormat("Y-m-d H:i:s", $picture->getDateUpload());
+                            echo "le " . $datetime->format("d/m/Y à H:i:s"); ?>
                 </div>
             </div>
         </div>
@@ -50,7 +50,11 @@
                     <div class ="col-12 overflow-x:scroll">
                         <h5 class="font-weight-bold text text-primary"> <?php echo $comment['comment']->getTitle(); ?> </h5>
                         <p > <?php echo $comment['comment']->getContent(); ?></p>
-                        <p class="font-italic text-right small"> Posté par <?php echo $comment['userComment']; ?> le <?php echo $comment['comment']->getDateComment(); ?></p>
+                        <p class="font-italic text-right small"> Posté par <?php echo $comment['userComment']; ?> le 
+                        <?php  $datetime = DateTime::createFromFormat("Y-m-d H:i:s", $comment['comment']->getDateComment());
+                                echo $datetime->format("d/m/Y à H:i:s"); ?></p>
+                       
+                    
                     </div>
             <?php }
             } 
